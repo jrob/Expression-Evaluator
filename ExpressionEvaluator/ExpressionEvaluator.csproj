@@ -63,6 +63,7 @@
     <Compile Include="Procedures\Functions\Now.cs" />
     <Compile Include="Procedures\Functions\Seconds.cs" />
     <Compile Include="Procedures\Functions\Sign.cs" />
+    <Compile Include="Procedures\Functions\ToNumber.cs" />
     <Compile Include="Procedures\Functions\TotalDays.cs" />
     <Compile Include="Procedures\Functions\TotalHours.cs" />
     <Compile Include="Procedures\Functions\TotalMinutes.cs" />

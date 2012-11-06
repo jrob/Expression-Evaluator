@@ -51,6 +51,7 @@ namespace Vanderbilt.Biostatistics.Wfccm2
             new TotalMinutes(60),
             new TotalSeconds(60),
             new Contains(60),
+            new ToNumber(60),
 
             new Conditional("if", 70, 2, false),
             new Conditional("elseif", 70, 2, false),

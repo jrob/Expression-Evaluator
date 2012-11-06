@@ -23,6 +23,7 @@ namespace Vanderbilt.Biostatistics.Wfccm2
         protected Func<double, double, bool> DoubleDoubleBool;
         protected Func<DateTime, DateTime, bool> DatetimeDatetimeBool;
         protected Func<Object, Object, bool> ObjectObjectBool;
+        protected Func<String, double> StringDouble; 
         protected string _name2;
 
         public Procedure(string name, int precedance, int numParams)
@@ -60,6 +61,15 @@ namespace Vanderbilt.Biostatistics.Wfccm2
                 {
                     var dOp1 = op1 as GenericOperand<double>;
                     return new GenericOperand<double>(DoubleDouble(dOp1.Value));
+                }
+            }
+
+            if (StringDouble != null)
+            {
+                if (op1.Type == typeof(string))
+                {
+                    var dOp1 = op1 as GenericOperand<string>;
+                    return new GenericOperand<double>(StringDouble(dOp1.Value));
                 }
             }
 
