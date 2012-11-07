@@ -55,6 +55,7 @@
     <Compile Include="CaseTests.generated.cs" />
     <Compile Include="ConditionalTests.cs" />
     <Compile Include="ContiansTests.cs" />
+    <Compile Include="SubstringFunctionTests.cs" />
     <Compile Include="DateTimeTests.cs" />
     <Compile Include="DaysFunctionTests.generated.cs" />
     <Compile Include="DivisionOperatorTests.generated.cs" />

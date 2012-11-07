@@ -343,7 +343,14 @@ namespace Vanderbilt.Biostatistics.Wfccm2
         public T Evaluate<T>()
         {
             var result = Evaluate();
-            return ((GenericOperand<T>)result).Value;            
+            try
+            {
+                return ((GenericOperand<T>)result).Value;            
+            }
+            catch (InvalidCastException)
+            {
+                throw new InvalidTypeExpressionException("Result was null because of an invalid type.");
+            }            
         }
 
         private IOperand Evaluate()
@@ -351,6 +358,7 @@ namespace Vanderbilt.Biostatistics.Wfccm2
             var workstack = new Stack<IToken>();
             IOperand op1 = null;
             IOperand op2 = null;
+            IOperand op3 = null;
             IOperand result = null;
             int currentConditionalDepth = 0;
 
@@ -377,6 +385,12 @@ namespace Vanderbilt.Biostatistics.Wfccm2
                 {
                     op2 = (IOperand)workstack.Pop();
                     op1 = (IOperand)workstack.Pop();
+                }
+                else if (op.NumParameters == 3)
+                {
+                    op3 = (IOperand) workstack.Pop();
+                    op2 = (IOperand) workstack.Pop();
+                    op1 = (IOperand) workstack.Pop();
                 }
                 else
                 {
@@ -438,6 +452,10 @@ namespace Vanderbilt.Biostatistics.Wfccm2
                     else if (op.NumParameters == 2)
                     {
                         result = op.Evaluate(op1, op2);
+                    }
+                    else if (op.NumParameters == 3)
+                    {
+                        result = op.Evaluate(op1, op2, op3);
                     }
                 }
 

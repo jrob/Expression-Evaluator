@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InvalidTypeExpressionException.cs" />
     <Compile Include="IExpression.cs" />
     <Compile Include="Keywords\Operand.cs" />
     <Compile Include="Keywords\Conditional.cs" />
@@ -57,6 +58,7 @@
     <Compile Include="Keywords\Variable.cs" />
     <Compile Include="Procedures\Functions\Absolute.cs" />
     <Compile Include="Procedures\Functions\Contains.cs" />
+    <Compile Include="Procedures\Functions\Substring.cs" />
     <Compile Include="Procedures\Functions\Days.cs" />
     <Compile Include="Procedures\Functions\Hours.cs" />
     <Compile Include="Procedures\Functions\Minutes.cs" />

@@ -23,7 +23,8 @@ namespace Vanderbilt.Biostatistics.Wfccm2
         protected Func<double, double, bool> DoubleDoubleBool;
         protected Func<DateTime, DateTime, bool> DatetimeDatetimeBool;
         protected Func<Object, Object, bool> ObjectObjectBool;
-        protected Func<String, double> StringDouble; 
+        protected Func<String, double> StringDouble;
+        protected Func<String, double, double, String> StringDoubleDoubleString; 
         protected string _name2;
 
         public Procedure(string name, int precedance, int numParams)
@@ -224,6 +225,40 @@ namespace Vanderbilt.Biostatistics.Wfccm2
             }
             throw new ExpressionException(_name2 + " operator used incorrectly. Operand types: " + op1.Type.Name + ", " + op2.Type.Name + ".");
         }
+
+        public IOperand Evaluate(IOperand op1, IOperand op2, IOperand op3)
+        {
+            try
+            {
+                if (StringDoubleDoubleString != null)
+                {
+                    if (op1.Type == typeof(string) && op2.Type == typeof(double) && op3.Type == typeof(double))
+                    {                        
+                        var dOp1 = op1 as GenericOperand<string>;
+                        var dOp2 = op2 as GenericOperand<double>;
+                        var dOp3 = op3 as GenericOperand<double>;
+
+                        if ((dOp2.Value % 1) != 0 || (dOp3.Value % 1) != 0)
+                        {
+                            throw new ExpressionException("One or more of the substring parameters contain decimals and not integers!");
+                        }
+
+                        return new GenericOperand<string>(StringDoubleDoubleString(dOp1.Value, dOp2.Value, dOp3.Value));
+                    }
+                }
+
+                if (op1.Type == typeof(Object) || op2.Type == typeof(Object) || op2.Type == typeof(Object))
+                {
+                    return new GenericOperand<object>();
+                }
+            }
+            catch (Exception e)
+            {
+                throw new ExpressionException(_name2 + " operator threw an exception. Operand types: " + op1.Type.Name + ", " + op2.Type.Name  + ", " + op3.Type.Name + "." + Environment.NewLine + e.Message);
+            }
+            throw new ExpressionException(_name2 + " operator used incorrectly. Operand types: " + op1.Type.Name + ", " + op2.Type.Name + ", " + op3.Type.Name + ".");
+        }
+
 
     }
 }
