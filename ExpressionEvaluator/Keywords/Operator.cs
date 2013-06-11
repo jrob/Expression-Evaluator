@@ -2,8 +2,8 @@
 {
     public class Operator : Procedure
     {
-        public Operator(string name, int precedance, int numParams)
-            : base (name, precedance,numParams)
+        public Operator(string name, int precedance, int numParams, bool variableOperandsCount)
+            : base(name, precedance, numParams, variableOperandsCount)
         {
         }
     }

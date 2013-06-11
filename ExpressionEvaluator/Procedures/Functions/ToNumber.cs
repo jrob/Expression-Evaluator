@@ -6,7 +6,7 @@ namespace ExpressionEvaluator.Procedures.Functions
     class ToNumber : Function
     {
         public ToNumber(int precedance)
-            : base("tonumber", precedance, 1)
+            : base("tonumber", precedance, 1, false)
         {
             _name2 = "ToNumber";
             StringDouble = x =>

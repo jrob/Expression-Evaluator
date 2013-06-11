@@ -4,7 +4,8 @@ namespace ExpressionEvaluator.Procedures.Operators
 {
     class LesserThan : Operator
     {
-        public LesserThan(int precedance) : base("<", precedance, 2)
+        public LesserThan(int precedance)
+            : base("<", precedance, 2, false)
         {
             _name2 = "LessThan";
             DoubleDoubleBool = (x, y) => x < y;

@@ -4,7 +4,8 @@ namespace ExpressionEvaluator.Procedures.Operators
 {
     class GreaterThan : Operator
     {
-        public GreaterThan(int precedance) : base(">", precedance, 2)
+        public GreaterThan(int precedance)
+            : base(">", precedance, 2, false)
         {
             _name2 = "GreaterThan";
             DoubleDoubleBool = (x, y) => x > y;

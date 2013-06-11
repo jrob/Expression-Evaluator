@@ -4,7 +4,7 @@ namespace ExpressionEvaluator.Procedures.Operators
 {
     class NotEqual : Operator
     {
-        public NotEqual(int precedance) : base("!=", precedance, 2)
+        public NotEqual(int precedance) : base("!=", precedance, 2, false)
         {
             _name2 = "NotEqual";
             DoubleDoubleBool = (x, y) => x != y;

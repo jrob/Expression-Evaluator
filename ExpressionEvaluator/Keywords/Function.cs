@@ -2,8 +2,8 @@
 {
     public class Function : Procedure
     {
-        public Function(string name, int precedance, int numParams)
-            : base(name, precedance, numParams)
+        public Function(string name, int precedance, int numParams, bool variableOperandsCount)
+            : base(name, precedance, numParams, variableOperandsCount)
         {
         }
     }

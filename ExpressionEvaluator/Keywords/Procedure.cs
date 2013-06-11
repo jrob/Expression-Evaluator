@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using ExpressionEvaluator.Procedures;
 
 namespace Vanderbilt.Biostatistics.Wfccm2
@@ -24,24 +25,28 @@ namespace Vanderbilt.Biostatistics.Wfccm2
         protected Func<DateTime, DateTime, bool> DatetimeDatetimeBool;
         protected Func<Object, Object, bool> ObjectObjectBool;
         protected Func<String, double> StringDouble;
-        protected Func<String, double, double, String> StringDoubleDoubleString; 
+        protected Func<String, double, double, String> StringDoubleDoubleString;
+        protected Func<List<double>, double> OperandList;
         protected string _name2;
 
-        public Procedure(string name, int precedance, int numParams)
+        public Procedure(string name, int precedance, int numParams, bool variableOperandsCount)
             : base(name, precedance)
         {
             NumParameters = numParams;
             AlwaysReturnsValue = true;
+            VariableOperandsCount = variableOperandsCount;
         }
 
-        public Procedure(string name, int precedance, int numParams, bool alwaysReturnsValue)
+        public Procedure(string name, int precedance, int numParams, bool alwaysReturnsValue, bool variableOperandsCount)
             : base(name, precedance)
         {
             NumParameters = numParams;
             AlwaysReturnsValue = alwaysReturnsValue;
+            VariableOperandsCount = variableOperandsCount;
         }
 
-        public int NumParameters { get; private set; }
+        public int NumParameters { get; set; }
+        public bool VariableOperandsCount { get; private set; }
         public bool AlwaysReturnsValue { get; private set; }
 
         public IOperand Evaluate()
@@ -93,6 +98,23 @@ namespace Vanderbilt.Biostatistics.Wfccm2
             }
 
             throw new ExpressionException(_name2 + " operator used incorrectly.");
+        }
+
+        public IOperand Evaluate(List<IOperand> operands)
+        {
+            if (OperandList != null)
+            {
+                List<double> nums = new List<double>();
+                for (int i = 0; i < operands.Count; i++)
+                {
+                    var op = operands[i] as GenericOperand<double>;
+                    if (op != null)
+                        nums.Add(op.Value);
+                }
+
+                return new GenericOperand<double>(OperandList(nums));
+            }
+            throw new ExpressionException(_name2 + " operator used incorrectly. Operand types: " + operands[0].Type.Name + ", " + operands[0].Type.Name + ".");
         }
 
         public IOperand Evaluate(IOperand op1, IOperand op2)

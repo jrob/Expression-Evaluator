@@ -118,9 +118,16 @@ namespace Vanderbilt.Biostatistics.Wfccm2
                 {
                     var kw = ExpressionKeywords.Keywords.OfType<Procedure>().Where(x => x.Name == token).Select(x => x).Single();
 
+                    var numParams = kw.NumParameters;
+                    if (kw.Name == "sum")
+                    {
+                        numParams = tokens.Length - 1;
+                        kw.NumParameters = numParams;
+                    }
+
                     try
                     {
-                        for (int i = 0; i < kw.NumParameters; i++)
+                        for (int i = 0; i < numParams; i++)
                         {
                             workstack.Pop();
                         }

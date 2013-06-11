@@ -54,10 +54,11 @@ namespace Vanderbilt.Biostatistics.Wfccm2
             new ToNumber(60),
             new Substring(60),
             new Length(60),
+            new Sum(60),
 
-            new Conditional("if", 70, 2, false),
-            new Conditional("elseif", 70, 2, false),
-            new Conditional("else", 70, 1, true),
+            new Conditional("if", 70, 2, false, false),
+            new Conditional("elseif", 70, 2, false, false),
+            new Conditional("else", 70, 1, true, false),
 
             new Grouping("Paranthesis", "(", ")"),
             new Grouping("Curley Braces", "{", "}"),

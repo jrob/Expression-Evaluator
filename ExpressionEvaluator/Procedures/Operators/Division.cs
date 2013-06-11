@@ -4,7 +4,7 @@ namespace ExpressionEvaluator.Procedures.Operators
 {
     class Division : Operator
     {
-        public Division(int precedance) : base("/", precedance, 2)
+        public Division(int precedance) : base("/", precedance, 2, false)
         {
             _name2 = "Division";
             DoubleDoubleDouble = (x, y) =>

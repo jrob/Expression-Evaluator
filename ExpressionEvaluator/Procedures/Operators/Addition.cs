@@ -4,7 +4,8 @@ namespace ExpressionEvaluator.Procedures.Operators
 {
     class Addition : Operator
     {
-        public Addition(int precedance) : base("+", precedance, 2)
+        public Addition(int precedance)
+            : base("+", precedance, 2, false)
         {
             _name2 = "Addition";
             DoubleDoubleDouble = (x, y) => x + y;

@@ -4,7 +4,7 @@ namespace ExpressionEvaluator.Procedures.Operators
 {
     class Equal : Operator
     {
-        public Equal(int precedance) : base("==", precedance, 2)
+        public Equal(int precedance) : base("==", precedance, 2, false)
         {
             _name2 = "Equal";
             DoubleDoubleBool = (x, y) => x == y;

@@ -348,9 +348,9 @@ namespace Vanderbilt.Biostatistics.Wfccm2
         private IOperand Evaluate()
         {
             var workstack = new Stack<IToken>();
-            IOperand op1 = null;
-            IOperand op2 = null;
-            IOperand op3 = null;
+
+            var operands = new List<IOperand>();
+
             IOperand result = null;
             int currentConditionalDepth = 0;
 
@@ -366,27 +366,9 @@ namespace Vanderbilt.Biostatistics.Wfccm2
 
                 var op = token as Procedure;
 
-                if (op.NumParameters == 0)
+                for (int i = 0; i < op.NumParameters; i++)
                 {
-                }
-                else if (op.NumParameters == 1)
-                {
-                    op1 = (IOperand)workstack.Pop();
-                }
-                else if (op.NumParameters == 2)
-                {
-                    op2 = (IOperand)workstack.Pop();
-                    op1 = (IOperand)workstack.Pop();
-                }
-                else if (op.NumParameters == 3)
-                {
-                    op3 = (IOperand) workstack.Pop();
-                    op2 = (IOperand) workstack.Pop();
-                    op1 = (IOperand) workstack.Pop();
-                }
-                else
-                {
-                    throw new ExpressionException("Unknown number of parameters.");
+                    operands.Insert(0, (IOperand)workstack.Pop());
                 }
 
                 if (op.Name == "if" || op.Name == "elseif" || op.Name == "else")
@@ -402,12 +384,12 @@ namespace Vanderbilt.Biostatistics.Wfccm2
                             goto case "if";
 
                         case "if":
-                            var dOp1 = op1 as GenericOperand<bool>;
-                            if (op1.Type != typeof (bool))
+                            var dOp1 = operands[0] as GenericOperand<bool>;
+                            if (dOp1 == null || dOp1.Type != typeof(bool))
                                 throw new ExpressionException("variable type error");
                             if (dOp1.Value)
                             {
-                                result = op2;
+                                result = operands[1];
                                 currentConditionalDepth++;
                             }
                             else
@@ -424,7 +406,7 @@ namespace Vanderbilt.Biostatistics.Wfccm2
                                 // Eat the result.
                                 continue;
                             }
-                            result = op1;
+                            result = operands[0];
                             break;
 
                         default:
@@ -433,21 +415,28 @@ namespace Vanderbilt.Biostatistics.Wfccm2
                 }
                 else
                 {
-                    if (op.NumParameters == 0)
+                    if (op.VariableOperandsCount)
                     {
-                        result = op.Evaluate();
+                        result = op.Evaluate(operands);
                     }
-                    if (op.NumParameters == 1)
+                    else
                     {
-                        result = op.Evaluate(op1);
-                    }
-                    else if (op.NumParameters == 2)
-                    {
-                        result = op.Evaluate(op1, op2);
-                    }
-                    else if (op.NumParameters == 3)
-                    {
-                        result = op.Evaluate(op1, op2, op3);
+                        if (op.NumParameters == 0)
+                        {
+                            result = op.Evaluate();
+                        }
+                        if (op.NumParameters == 1)
+                        {
+                            result = op.Evaluate(operands[0]);
+                        }
+                        else if (op.NumParameters == 2)
+                        {
+                            result = op.Evaluate(operands[0], operands[1]);
+                        }
+                        else if (op.NumParameters == 3)
+                        {
+                            result = op.Evaluate(operands[0], operands[1], operands[2]);
+                        }
                     }
                 }
 
