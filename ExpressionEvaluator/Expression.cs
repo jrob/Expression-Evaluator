@@ -415,6 +415,7 @@ namespace Vanderbilt.Biostatistics.Wfccm2
 
             IOperand result = null;
             int currentConditionalDepth = 0;
+            int currentIteration = 0;
 
             // loop through the postfix vector
             foreach (var token in _tokens) {
@@ -426,8 +427,33 @@ namespace Vanderbilt.Biostatistics.Wfccm2
 
                 var op = token as Procedure;
 
-                for (int i = 0; i < op.NumParameters; i++) {
-                    operands.Insert(0, (IOperand)workstack.Pop());
+                if (op.Name != "sum") {
+                    operands = new List<IOperand>();
+                    for (int i = 0; i < op.NumParameters; i++) {
+                        currentIteration++;
+                        operands.Insert(0, (IOperand)workstack.Pop());
+                    }
+                }
+                else {
+                    int chkoperandCount = 0;
+                    if (currentIteration > 1) {
+                        chkoperandCount = workstack.Count - 1;
+                    }
+                    else {
+                        if (workstack.Count > op.NumParameters) {
+                            chkoperandCount = workstack.Count - 1;
+                        }
+                        else {
+                            chkoperandCount = workstack.Count;
+                        }
+                    }
+
+                    operands = new List<IOperand>();
+
+                    for (int i = 0; i < chkoperandCount; i++) {
+                        currentIteration++;
+                        operands.Insert(0, (IOperand)workstack.Pop());
+                    }
                 }
 
                 if (op.Name == "if"
