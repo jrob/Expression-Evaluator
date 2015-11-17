@@ -97,5 +97,12 @@ namespace ExpressionEvaluatorTests
             func.Function = @"4*sum(5,6)";
             Assert.AreEqual(44, func.EvaluateNumeric());
         }
+
+        [Test]
+        public void Sum_Numbers_subtract_decimal_Multiply_BothSide_IsCorrect()
+        {
+            func.Function = @"4*sum(5,6)*4";
+            Assert.AreEqual(176, func.EvaluateNumeric());
+        }
     }
 }

@@ -6,6 +6,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 
@@ -416,10 +417,12 @@ namespace Vanderbilt.Biostatistics.Wfccm2
             IOperand result = null;
             int currentConditionalDepth = 0;
             int currentIteration = 0;
+            int checkOperation = 0;
 
             // loop through the postfix vector
             foreach (var token in _tokens) {
                 if (!(token is Procedure)) {
+                    checkOperation++;
                     // push the string on the workstack
                     workstack.Push(token);
                     continue;
@@ -440,11 +443,20 @@ namespace Vanderbilt.Biostatistics.Wfccm2
                         chkoperandCount = workstack.Count - 1;
                     }
                     else {
-                        if (workstack.Count > op.NumParameters) {
-                            chkoperandCount = workstack.Count - 1;
-                        }
-                        else {
-                            chkoperandCount = workstack.Count;
+                        if (op != null) {
+                            if ((checkOperation + 1) < _tokens.Count) {
+                                var temptokennext = _tokens[checkOperation + 1] as Procedure;
+                                if ((op.Name == "sum")
+                                    && (temptokennext != null)) {
+                                    chkoperandCount = workstack.Count - 1;
+                                }
+                                else {
+                                    chkoperandCount = workstack.Count;
+                                }
+                            }
+                            else {
+                                chkoperandCount = workstack.Count;
+                            }
                         }
                     }
 

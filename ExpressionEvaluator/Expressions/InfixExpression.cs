@@ -100,13 +100,14 @@ namespace Vanderbilt.Biostatistics.Wfccm2
                         .Where(x => x.Name == token)
                         .Select(x => x)
                         .Single();
-
-                    if (i + 2 + kw.NumParameters >= tokens.Count()
-                        || tokens[i + 1] != "(") {
-                        throw new ExpressionException(
-                            "Function error! " + token
-                                + " not formatted correctly. Open and close parenthesis required. "
-                                + inFix);
+                    if (kw.Name != "sum") {
+                        if (i + 2 + kw.NumParameters >= tokens.Count()
+                            || tokens[i + 1] != "(") {
+                            throw new ExpressionException(
+                                "Function error! " + token
+                                    + " not formatted correctly. Open and close parenthesis required. "
+                                    + inFix);
+                        }
                     }
                 }
             }
