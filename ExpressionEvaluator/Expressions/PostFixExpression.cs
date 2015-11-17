@@ -94,7 +94,14 @@ namespace Vanderbilt.Biostatistics.Wfccm2
         private void CheckPostVectorForEvaluability(string[] tokens)
         {
             var workstack = new Stack<string>();
+            int numberofOperator=0;
+            for (int j = 0; j < tokens.Length; j++) {
 
+                if (ExpressionKeywords.IsOperator(tokens[j])
+                    || ExpressionKeywords.Functions.Contains(tokens[j])
+                    || ExpressionKeywords.ConditionalOperators.Contains(tokens[j])) 
+                {numberofOperator++;}
+            }
             for (int index = 0; index < tokens.Length; index++) {
                 string token = tokens[index];
 
@@ -107,22 +114,43 @@ namespace Vanderbilt.Biostatistics.Wfccm2
                         .Single();
 
                     var numParams = kw.NumParameters;
-                    if (kw.Name == "sum") {
-                        numParams = tokens.Length - 1;
-                        kw.NumParameters = numParams;
-                    }
+                    if (numberofOperator == 1) {
+                        if (kw.Name == "sum") {
+                            numParams = tokens.Length - 1;
+                            kw.NumParameters = numParams;
+                        }
 
-                    try {
-                        for (int i = 0; i < numParams; i++) {
-                            workstack.Pop();
+                        try {
+                            for (int i = 0; i < numParams; i++) {
+                                workstack.Pop();
+                            }
+                        }
+                        catch {
+                            throw new ExpressionException("Operator error! \"" + token + "\". ");
+                        }
+
+
+                        if (kw.AlwaysReturnsValue) {
+                            workstack.Push("0");
                         }
                     }
-                    catch {
-                        throw new ExpressionException("Operator error! \"" + token + "\". ");
-                    }
-
-                    if (kw.AlwaysReturnsValue) {
-                        workstack.Push("0");
+                    else {
+                        try {
+                            int chkItearation = workstack.Count;
+                            if (chkItearation != 0) {
+                                for (int i = 0; i < chkItearation; i++) {
+                                    workstack.Pop();
+                                }
+                            }
+                           if (kw.AlwaysReturnsValue)
+                            {
+                                workstack.Push("0");
+                            }
+                        }
+                        catch
+                        {
+                            throw new ExpressionException("Operator error! \"" + token + "\". ");
+                        }
                     }
                 }
                 else {

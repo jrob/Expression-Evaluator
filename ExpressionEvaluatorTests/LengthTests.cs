@@ -28,5 +28,12 @@ namespace ExpressionEvaluatorTests
             _func.Function = @"Length('abcd')";
             Assert.AreEqual(4, _func.EvaluateNumeric());
         }
+
+        [Test]
+        public void Length_ValidSTring_Multiply_IsCorrect()
+        {
+            _func.Function = @"Length('abcd')*3";
+            Assert.AreEqual(12, _func.EvaluateNumeric());
+        }
     }
 }

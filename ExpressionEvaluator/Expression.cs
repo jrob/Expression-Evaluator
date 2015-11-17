@@ -6,6 +6,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 
@@ -115,7 +116,10 @@ namespace Vanderbilt.Biostatistics.Wfccm2
             AddSetVariable<string>(name, val.ToLower());
         }
 
-        public void AddSetVariable(string name, double val) { AddSetVariable<decimal>(name, (decimal)val); }
+        public void AddSetVariable(string name, double val)
+        {
+            AddSetVariable<decimal>(name, (decimal)val);
+        }
 
         public void AddSetVariable(string name, DateTime val)
         {
@@ -188,17 +192,15 @@ namespace Vanderbilt.Biostatistics.Wfccm2
                     return Double.NaN;
                 }
                 if (result is GenericOperand<decimal>) {
-                    return
-                        (result as GenericOperand<decimal>).ToDouble()
-                            .Value;
+                    return (result as GenericOperand<decimal>).ToDouble()
+                        .Value;
                 }
                 return ((GenericOperand<double>)result).Value;
             }
             catch (NotFiniteNumberException nf) {
                 return double.NaN;
             }
-            catch (DivideByZeroException nf)
-            {
+            catch (DivideByZeroException nf) {
                 return double.NaN;
             }
         }
@@ -214,9 +216,7 @@ namespace Vanderbilt.Biostatistics.Wfccm2
         public double GetVariableValue(string token)
         {
             try {
-
                 return ((_variables[token] as GenericVariable<decimal>).ToDouble()).Value;
-
             }
             catch {
                 return double.NaN;
@@ -310,7 +310,9 @@ namespace Vanderbilt.Biostatistics.Wfccm2
                 }
 
                 // Convert the operand
-                return new GenericOperand<decimal>(decimal.Parse(token, System.Globalization.NumberStyles.Float));
+                return
+                    new GenericOperand<decimal>(
+                        decimal.Parse(token, System.Globalization.NumberStyles.Float));
             }
         }
 
@@ -414,10 +416,13 @@ namespace Vanderbilt.Biostatistics.Wfccm2
 
             IOperand result = null;
             int currentConditionalDepth = 0;
+            int currentIteration = 0;
+            int checkOperation = 0;
 
             // loop through the postfix vector
             foreach (var token in _tokens) {
                 if (!(token is Procedure)) {
+                    checkOperation++;
                     // push the string on the workstack
                     workstack.Push(token);
                     continue;
@@ -425,8 +430,42 @@ namespace Vanderbilt.Biostatistics.Wfccm2
 
                 var op = token as Procedure;
 
-                for (int i = 0; i < op.NumParameters; i++) {
-                    operands.Insert(0, (IOperand)workstack.Pop());
+                if (op.Name != "sum") {
+                    operands = new List<IOperand>();
+                    for (int i = 0; i < op.NumParameters; i++) {
+                        currentIteration++;
+                        operands.Insert(0, (IOperand)workstack.Pop());
+                    }
+                }
+                else {
+                    int chkoperandCount = 0;
+                    if (currentIteration > 1) {
+                        chkoperandCount = workstack.Count - 1;
+                    }
+                    else {
+                        if (op != null) {
+                            if ((checkOperation + 1) < _tokens.Count) {
+                                var temptokennext = _tokens[checkOperation + 1] as Procedure;
+                                if ((op.Name == "sum")
+                                    && (temptokennext != null)) {
+                                    chkoperandCount = workstack.Count - 1;
+                                }
+                                else {
+                                    chkoperandCount = workstack.Count;
+                                }
+                            }
+                            else {
+                                chkoperandCount = workstack.Count;
+                            }
+                        }
+                    }
+
+                    operands = new List<IOperand>();
+
+                    for (int i = 0; i < chkoperandCount; i++) {
+                        currentIteration++;
+                        operands.Insert(0, (IOperand)workstack.Pop());
+                    }
                 }
 
                 if (op.Name == "if"
@@ -492,12 +531,10 @@ namespace Vanderbilt.Biostatistics.Wfccm2
                                 }
                             }
                         }
-                        catch (NotFiniteNumberException nf)
-                        {
-                            result= new GenericOperand<double>(double.NaN);
+                        catch (NotFiniteNumberException nf) {
+                            result = new GenericOperand<double>(double.NaN);
                         }
-                        catch (DivideByZeroException nf)
-                        {
+                        catch (DivideByZeroException nf) {
                             result = new GenericOperand<double>(double.NaN);
                         }
                         catch (Exception exp) {
