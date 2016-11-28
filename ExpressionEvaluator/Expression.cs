@@ -77,6 +77,7 @@ namespace Vanderbilt.Biostatistics.Wfccm2
                 BuildTokens();
             }
         }
+
         public ReadOnlyCollection<string> FunctionVariables
         {
             get
@@ -90,6 +91,7 @@ namespace Vanderbilt.Biostatistics.Wfccm2
                 return retVal.AsReadOnly();
             }
         }
+
         /// <summary>
         /// PostFix property
         /// </summary>
@@ -97,6 +99,7 @@ namespace Vanderbilt.Biostatistics.Wfccm2
         /// 2004-07-19 - Jeremy Roberts
         /// </pre></remarks>
         public string InFix { get { return _inFunction.Expression; } }
+
         /// <summary>
         /// PostFix property
         /// </summary>
@@ -108,11 +111,6 @@ namespace Vanderbilt.Biostatistics.Wfccm2
         public void AddSetVariable(string name, TimeSpan val)
         {
             AddSetVariable<TimeSpan>(name, val);
-        }
-
-        public void AddSetVariable(string name, string val)
-        {
-            AddSetVariable<string>(name, val.ToLower());
         }
 
         public void AddSetVariable(string name, double val)
@@ -220,6 +218,11 @@ namespace Vanderbilt.Biostatistics.Wfccm2
             catch {
                 return double.NaN;
             }
+        }
+
+        public void AddSetVariable(string name, string val)
+        {
+            AddSetVariable<string>(name, val.ToLower());
         }
 
         /// <summary>
@@ -550,46 +553,47 @@ namespace Vanderbilt.Biostatistics.Wfccm2
             public abstract double EvaluateD(Dictionary<string, double> variables);
         }
 
-        ///// <summary>
-        ///// Compiles the functions.
-        ///// </summary>
-        ///// <remarks><pre>
-        ///// 2005-12-20 - Jeremy Roberts
-        ///// </pre></remarks>
-        //protected void compile()
-        //{
-        //    // Code to set up the object.
-
-        //    // Create a new AppDomain.
-        //    // Set up assembly.
+        //    ConstructorBuilder constructor = dynamicFunctionClass.DefineConstructor(
+        //    Type[] constructorParams = { };
+        //    ConstructorInfo objConstructor = objType.GetConstructor(new Type[0]);
+        //    Type objType = Type.GetType("System.Object");
         //    //
-        //    //NewAppDomain = System.AppDomain.CreateDomain("NewApplicationDomain");
-        //    //NewAppDomain = appDomain;
-
-        //    AssemblyName assemblyName = new AssemblyName();
-        //    assemblyName.Name = "EmittedAssembly";
-        //    AssemblyBuilder assembly = Thread.GetDomain().DefineDynamicAssembly(
-        //    //AssemblyBuilder assembly = NewAppDomain.DefineDynamicAssembly(
-        //        assemblyName,
-        //        //AssemblyBuilderAccess.Save);
-        //        AssemblyBuilderAccess.Run);
-        //        //AssemblyBuilderAccess.RunAndSave);
-
-        //    // Add Dynamic Module
-        //    //
-        //    ModuleBuilder module;
-        //    module = assembly.DefineDynamicModule("EmittedModule");
-        //    TypeBuilder dynamicFunctionClass = module.DefineType(
-        //        "DynamicFunction",
-        //        TypeAttributes.Public,
-        //        typeof(DynamicFunction));
 
         //    // Define class constructor
+        //        typeof(DynamicFunction));
+        //        TypeAttributes.Public,
+        //        "DynamicFunction",
+        //    TypeBuilder dynamicFunctionClass = module.DefineType(
+        //    module = assembly.DefineDynamicModule("EmittedModule");
+        //    ModuleBuilder module;
         //    //
-        //    Type objType = Type.GetType("System.Object");
-        //    ConstructorInfo objConstructor = objType.GetConstructor(new Type[0]);
-        //    Type[] constructorParams = { };
-        //    ConstructorBuilder constructor = dynamicFunctionClass.DefineConstructor(
+
+        //    // Add Dynamic Module
+        //        //AssemblyBuilderAccess.RunAndSave);
+        //        AssemblyBuilderAccess.Run);
+        //        //AssemblyBuilderAccess.Save);
+        //        assemblyName,
+        //    //AssemblyBuilder assembly = NewAppDomain.DefineDynamicAssembly(
+        //    AssemblyBuilder assembly = Thread.GetDomain().DefineDynamicAssembly(
+        //    assemblyName.Name = "EmittedAssembly";
+
+        //    AssemblyName assemblyName = new AssemblyName();
+        //    //NewAppDomain = appDomain;
+        //    //NewAppDomain = System.AppDomain.CreateDomain("NewApplicationDomain");
+        //    //
+        //    // Set up assembly.
+
+        //    // Create a new AppDomain.
+        //    // Code to set up the object.
+        //{
+        //protected void compile()
+        ///// </pre></remarks>
+        ///// 2005-12-20 - Jeremy Roberts
+        ///// <remarks><pre>
+        ///// </summary>
+        ///// Compiles the functions.
+
+        ///// <summary>
         //        MethodAttributes.Public,
         //        CallingConventions.Standard,
         //        constructorParams);

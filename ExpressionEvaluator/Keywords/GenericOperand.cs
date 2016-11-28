@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Security.Cryptography;
 
 namespace Vanderbilt.Biostatistics.Wfccm2
 {
@@ -9,8 +8,8 @@ namespace Vanderbilt.Biostatistics.Wfccm2
 
         public GenericOperand() { }
 
-        public Type Type { get { return typeof(T); } }
         public T Value { get; set; }
+        public Type Type { get { return typeof(T); } }
 
         public override string ToString() { return Value == null ? "null" : Value.ToString(); }
 
@@ -20,7 +19,6 @@ namespace Vanderbilt.Biostatistics.Wfccm2
                 return new GenericOperand<double>(Convert.ToDouble(Value.ToString()));
             }
             catch {
-
                 return new GenericOperand<double>(Double.NaN);
             }
         }

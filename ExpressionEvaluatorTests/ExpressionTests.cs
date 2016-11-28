@@ -51,10 +51,24 @@ namespace ExpressionEvaluatorTests
         }
 
         [Test]
+        public void Evaulate_CheckFloatingPointErrors_IsCorrect()
+        {
+            _func.Function = "99.999999999999/100";
+            Assert.AreEqual(0.99999999999999, _func.EvaluateNumeric());
+        }
+
+        [Test]
         public void Evaulate_CheckFloatingPointErrors01_IsCorrect()
         {
             _func.Function = "0.3 / 0.4";
             Assert.AreEqual(0.75, _func.EvaluateNumeric());
+        }
+
+        [Test]
+        public void Evaulate_CheckFloatingPointErrorsWithBoolean_IsCorrect()
+        {
+            _func.Function = "0.3 >= 0.75 * 0.4";
+            Assert.AreEqual(true, _func.EvaluateBoolean());
         }
 
         [Test]
@@ -71,20 +85,6 @@ namespace ExpressionEvaluatorTests
             _func.AddSetVariable("a", 0.3);
             _func.AddSetVariable("b", 0.4);
             Assert.AreEqual(true, _func.EvaluateBoolean());
-        }
-
-        [Test]
-        public void Evaulate_CheckFloatingPointErrorsWithBoolean_IsCorrect()
-        {
-            _func.Function = "0.3 >= 0.75 * 0.4";
-            Assert.AreEqual(true, _func.EvaluateBoolean());
-        }
-
-        [Test]
-        public void Evaulate_CheckFloatingPointErrors_IsCorrect()
-        {
-            _func.Function = "99.999999999999/100";
-            Assert.AreEqual(0.99999999999999, _func.EvaluateNumeric());
         }
 
         [Test]
@@ -201,14 +201,6 @@ namespace ExpressionEvaluatorTests
         }
 
         [Test]
-        public void Variable002()
-        {
-            _func.Function = "a+b";
-            Assert.AreEqual(true, double.IsNaN(_func.GetVariableValue("a")));
-            Assert.AreEqual(true, double.IsNaN(_func.GetVariableValue("b")));
-        }
-
-        [Test]
         public void Variable_SetThenChanged_IsCorrect()
         {
             _func.Function = "a+b";
@@ -221,6 +213,14 @@ namespace ExpressionEvaluatorTests
             _func.AddSetVariable("b", 4);
             Assert.AreEqual(3, _func.GetVariableValue("a"));
             Assert.AreEqual(4, _func.GetVariableValue("b"));
+        }
+
+        [Test]
+        public void Variable002()
+        {
+            _func.Function = "a+b";
+            Assert.AreEqual(true, double.IsNaN(_func.GetVariableValue("a")));
+            Assert.AreEqual(true, double.IsNaN(_func.GetVariableValue("b")));
         }
     }
 }
