@@ -11,8 +11,6 @@ namespace Vanderbilt.Biostatistics.Wfccm2
         public T Value { get; set; }
         public Type Type { get { return typeof(T); } }
 
-        public override string ToString() { return Value == null ? "null" : Value.ToString(); }
-
         public GenericOperand<double> ToDouble()
         {
             try {
@@ -22,5 +20,7 @@ namespace Vanderbilt.Biostatistics.Wfccm2
                 return new GenericOperand<double>(Double.NaN);
             }
         }
+
+        public override string ToString() { return Value == null ? "null" : Value.ToString(); }
     }
 }

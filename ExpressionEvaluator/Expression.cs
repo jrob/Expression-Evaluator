@@ -210,14 +210,9 @@ namespace Vanderbilt.Biostatistics.Wfccm2
         /// </pre></remarks>
         /// <param name="token">Variable to return.</param>
         /// <returns></returns>
-        public double GetVariableValue(string token)
+        public T GetVariableValue<T>(string token)
         {
-            try {
-                return ((_variables[token] as GenericVariable<decimal>).ToDouble()).Value;
-            }
-            catch {
-                return double.NaN;
-            }
+            return ((GenericVariable<T>)_variables[token]).Value;
         }
 
         public void AddSetVariable(string name, string val)

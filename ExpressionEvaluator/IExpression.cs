@@ -5,10 +5,10 @@ namespace Vanderbilt.Biostatistics.Wfccm2
 {
     public interface IExpression
     {
-        string Function { get; set; }
         ReadOnlyCollection<string> FunctionVariables { get; }
         string InFix { get; }
         string PostFix { get; }
+        string Function { get; set; }
 
         void AddSetVariable(string name, TimeSpan val);
 
@@ -28,6 +28,6 @@ namespace Vanderbilt.Biostatistics.Wfccm2
 
         double EvaluateNumeric();
 
-        double GetVariableValue(string token);
+        T GetVariableValue<T>(string token);
     }
 }
