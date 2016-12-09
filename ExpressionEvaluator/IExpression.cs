@@ -18,6 +18,8 @@ namespace Vanderbilt.Biostatistics.Wfccm2
 
         void AddSetVariable(string name, bool val);
 
+        void AddSetVariable(string name, string val);
+
         void Clear();
 
         void ClearVariables();
