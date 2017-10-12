@@ -24,18 +24,19 @@ namespace Vanderbilt.Biostatistics.Wfccm2
             CheckConditionals(Expression, _tokens);
         }
 
+        public string Original { get { return _original; } }
+        public IEnumerable<string> Tokens { get { return _tokens; } }
         public Dictionary<string, IVariable> AutoVariables { get; private set; }
         public string Expression
         {
             get { return _expression; }
             private set { _expression = value; }
         }
-        public string Original { get { return _original; } }
-        public IEnumerable<string> Tokens { get { return _tokens; } }
 
         private void CheckConditionalFormatting(string inFix)
         {
-            string errorMsg = "Conditional Error! Boolean statement formatted incorrectly. " + inFix;
+            string errorMsg = "Conditional Error! Boolean statement formatted incorrectly. "
+                + inFix;
 
             // Find any instances of an "if" followed by something othern then a "(".
             if (Regex.IsMatch(inFix, @" if(?! *\()")) {
@@ -58,7 +59,7 @@ namespace Vanderbilt.Biostatistics.Wfccm2
         {
             string errorMsg =
                 "Conditional Error! If/Else mismatch. Should be in the following form: if (...) {...} else if (...) {...} else {...}. "
-                    + inFix;
+                + inFix;
 
             var workStack = new Stack<string>();
             foreach (var token in tokens) {
@@ -103,8 +104,8 @@ namespace Vanderbilt.Biostatistics.Wfccm2
                     || tokens[i + 1] != "(") {
                     throw new ExpressionException(
                         "Function error! " + token
-                            + " not formatted correctly. Open and close parenthesis required. "
-                            + inFix);
+                        + " not formatted correctly. Open and close parenthesis required. "
+                        + inFix);
                 }
             }
         }
@@ -159,7 +160,8 @@ namespace Vanderbilt.Biostatistics.Wfccm2
             function = Regex.Replace(function, "\r\n", " ");
             function = Regex.Replace(function, ",", " , ");
 
-            foreach (var x in ExpressionKeywords.Operators.Union(ExpressionKeywords.GroupOperators)) {
+            foreach (var x in ExpressionKeywords.Operators.Union(ExpressionKeywords.GroupOperators)
+            ) {
                 function = function.Replace(x, " " + x + " ");
             }
 
@@ -206,8 +208,7 @@ namespace Vanderbilt.Biostatistics.Wfccm2
                     expression, m => {
                         var name = Guid.NewGuid()
                             .ToString("N");
-                        var value = m.Value.Substring(1, m.Value.Length - 2)
-                            .ToLower();
+                        var value = m.Value.Substring(1, m.Value.Length - 2);
                         var newVar = new GenericVariable<string>(name, value);
                         AutoVariables.Add(name, newVar);
                         return " " + name + " ";

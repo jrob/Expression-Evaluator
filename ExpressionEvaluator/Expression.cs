@@ -43,7 +43,7 @@ namespace Vanderbilt.Biostatistics.Wfccm2
         /// <remarks><pre>
         /// 2004-07-20 - Jeremy Roberts
         /// </pre></remarks>
-        public Expression() {}
+        public Expression() { }
 
         /// <summary>
         /// Creation constructor.
@@ -57,6 +57,33 @@ namespace Vanderbilt.Biostatistics.Wfccm2
             Function = function;
         }
 
+        public ReadOnlyCollection<string> FunctionVariables
+        {
+            get
+            {
+                if (_inFunction == null) {
+                    throw new ExpressionException("Function does not exist");
+                }
+                var retVal = _inFunction.Tokens.Where(IsVariable)
+                    .Where(x => !_inFunction.AutoVariables.ContainsKey(x))
+                    .ToList();
+                return retVal.AsReadOnly();
+            }
+        }
+        /// <summary>
+        /// PostFix property
+        /// </summary>
+        /// <remarks><pre>
+        /// 2004-07-19 - Jeremy Roberts
+        /// </pre></remarks>
+        public string InFix { get { return _inFunction.Expression; } }
+        /// <summary>
+        /// PostFix property
+        /// </summary>
+        /// <remarks><pre>
+        /// 2004-07-19 - Jeremy Roberts
+        /// </pre></remarks>
+        public string PostFix { get { return _postFunction.Expression; } }
         /// <summary>
         /// InFix property
         /// </summary>
@@ -78,36 +105,6 @@ namespace Vanderbilt.Biostatistics.Wfccm2
             }
         }
 
-        public ReadOnlyCollection<string> FunctionVariables
-        {
-            get
-            {
-                if (_inFunction == null) {
-                    throw new ExpressionException("Function does not exist");
-                }
-                var retVal = _inFunction.Tokens.Where(IsVariable)
-                    .Where(x => !_inFunction.AutoVariables.ContainsKey(x))
-                    .ToList();
-                return retVal.AsReadOnly();
-            }
-        }
-
-        /// <summary>
-        /// PostFix property
-        /// </summary>
-        /// <remarks><pre>
-        /// 2004-07-19 - Jeremy Roberts
-        /// </pre></remarks>
-        public string InFix { get { return _inFunction.Expression; } }
-
-        /// <summary>
-        /// PostFix property
-        /// </summary>
-        /// <remarks><pre>
-        /// 2004-07-19 - Jeremy Roberts
-        /// </pre></remarks>
-        public string PostFix { get { return _postFunction.Expression; } }
-
         public void AddSetVariable(string name, TimeSpan val)
         {
             AddSetVariable<TimeSpan>(name, val);
@@ -124,6 +121,8 @@ namespace Vanderbilt.Biostatistics.Wfccm2
         }
 
         public void AddSetVariable(string name, bool val) { AddSetVariable<bool>(name, val); }
+
+        public void AddSetVariable(string name, string val) { AddSetVariable<string>(name, val); }
 
         /// <summary>
         /// Clears all information.
@@ -215,11 +214,6 @@ namespace Vanderbilt.Biostatistics.Wfccm2
             return ((GenericVariable<T>)_variables[token]).Value;
         }
 
-        public void AddSetVariable(string name, string val)
-        {
-            AddSetVariable<string>(name, val.ToLower());
-        }
-
         /// <summary>
         /// Checks to see if a string is a variable.
         /// </summary>
@@ -307,9 +301,8 @@ namespace Vanderbilt.Biostatistics.Wfccm2
                 }
 
                 // Convert the operand
-                return
-                    new GenericOperand<decimal>(
-                        decimal.Parse(token, System.Globalization.NumberStyles.Float));
+                return new GenericOperand<decimal>(
+                    decimal.Parse(token, System.Globalization.NumberStyles.Float));
             }
         }
 
@@ -347,7 +340,8 @@ namespace Vanderbilt.Biostatistics.Wfccm2
         {
             name = name.ToLower();
             if (_variables.ContainsKey(name)
-                && _variables[name].Type == typeof(object)) {
+                && _variables[name]
+                    .Type == typeof(object)) {
                 var oldVar = _variables[name];
                 var newVar = new GenericVariable<T>(name);
 
@@ -478,8 +472,7 @@ namespace Vanderbilt.Biostatistics.Wfccm2
                             result = operands[0];
                             break;
 
-                        default:
-                            break;
+                        default: break;
                     }
                 }
                 else {
@@ -547,49 +540,49 @@ namespace Vanderbilt.Biostatistics.Wfccm2
 
             public abstract double EvaluateD(Dictionary<string, double> variables);
         }
-
-        //    ConstructorBuilder constructor = dynamicFunctionClass.DefineConstructor(
-        //    Type[] constructorParams = { };
-        //    ConstructorInfo objConstructor = objType.GetConstructor(new Type[0]);
-        //    Type objType = Type.GetType("System.Object");
-        //    //
-
-        //    // Define class constructor
-        //        typeof(DynamicFunction));
-        //        TypeAttributes.Public,
-        //        "DynamicFunction",
-        //    TypeBuilder dynamicFunctionClass = module.DefineType(
-        //    module = assembly.DefineDynamicModule("EmittedModule");
-        //    ModuleBuilder module;
-        //    //
-
-        //    // Add Dynamic Module
-        //        //AssemblyBuilderAccess.RunAndSave);
-        //        AssemblyBuilderAccess.Run);
-        //        //AssemblyBuilderAccess.Save);
-        //        assemblyName,
-        //    //AssemblyBuilder assembly = NewAppDomain.DefineDynamicAssembly(
-        //    AssemblyBuilder assembly = Thread.GetDomain().DefineDynamicAssembly(
-        //    assemblyName.Name = "EmittedAssembly";
-
-        //    AssemblyName assemblyName = new AssemblyName();
-        //    //NewAppDomain = appDomain;
-        //    //NewAppDomain = System.AppDomain.CreateDomain("NewApplicationDomain");
-        //    //
-        //    // Set up assembly.
-
-        //    // Create a new AppDomain.
-        //    // Code to set up the object.
-        //{
-        //protected void compile()
-        ///// </pre></remarks>
-        ///// 2005-12-20 - Jeremy Roberts
-        ///// <remarks><pre>
-        ///// </summary>
-        ///// Compiles the functions.
+        //        MethodAttributes.Public,
 
         ///// <summary>
-        //        MethodAttributes.Public,
+        ///// Compiles the functions.
+        ///// </summary>
+        ///// <remarks><pre>
+        ///// 2005-12-20 - Jeremy Roberts
+        ///// </pre></remarks>
+        //protected void compile()
+        //{
+        //    // Code to set up the object.
+
+        //    // Create a new AppDomain.
+        //    // Set up assembly.
+        //    //
+        //    //NewAppDomain = System.AppDomain.CreateDomain("NewApplicationDomain");
+        //    //NewAppDomain = appDomain;
+
+        //    AssemblyName assemblyName = new AssemblyName();
+        //    assemblyName.Name = "EmittedAssembly";
+        //    AssemblyBuilder assembly = Thread.GetDomain().DefineDynamicAssembly(
+        //    //AssemblyBuilder assembly = NewAppDomain.DefineDynamicAssembly(
+        //        assemblyName,
+        //        //AssemblyBuilderAccess.Save);
+        //        AssemblyBuilderAccess.Run);
+        //        //AssemblyBuilderAccess.RunAndSave);
+
+        //    // Add Dynamic Module
+        //    //
+        //    ModuleBuilder module;
+        //    module = assembly.DefineDynamicModule("EmittedModule");
+        //    TypeBuilder dynamicFunctionClass = module.DefineType(
+        //        "DynamicFunction",
+        //        TypeAttributes.Public,
+        //        typeof(DynamicFunction));
+
+        //    // Define class constructor
+        //    //
+        //    Type objType = Type.GetType("System.Object");
+        //    ConstructorInfo objConstructor = objType.GetConstructor(new Type[0]);
+        //    Type[] constructorParams = { };
+
+        //    ConstructorBuilder constructor = dynamicFunctionClass.DefineConstructor(
         //        CallingConventions.Standard,
         //        constructorParams);
 

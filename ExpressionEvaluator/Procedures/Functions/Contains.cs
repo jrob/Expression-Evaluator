@@ -8,7 +8,8 @@ namespace ExpressionEvaluator.Procedures.Functions
             : base("contains", precedance, 2, false)
         {
             _name2 = "Contains";
-            StringStringBool = (x, y) => x.Contains(y);
+            StringStringBool = (x, y) => x.ToLower()
+                .Contains(y.ToLower());
         }
     }
 }
