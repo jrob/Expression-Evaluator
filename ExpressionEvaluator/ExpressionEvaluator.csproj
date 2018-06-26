@@ -66,6 +66,8 @@
     <Compile Include="Procedures\Functions\DaysComponent.cs" />
     <Compile Include="Procedures\Functions\Floor.cs" />
     <Compile Include="Procedures\Functions\HoursComponent.cs" />
+    <Compile Include="Procedures\Functions\Max.cs" />
+    <Compile Include="Procedures\Functions\Min.cs" />
     <Compile Include="Procedures\Functions\MinutesComponent.cs" />
     <Compile Include="Procedures\Functions\Round.cs" />
     <Compile Include="Procedures\Functions\SecondsComponent.cs" />

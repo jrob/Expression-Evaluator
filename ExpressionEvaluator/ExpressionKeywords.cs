@@ -71,6 +71,8 @@ namespace Vanderbilt.Biostatistics.Wfccm2
                 new Substring(60),
                 new Length(60),
                 new Sum(60),
+                new Min(60),
+                new Max(60),
                 new Round(60),
                 new Ceiling(60),
                 new Floor(60),
