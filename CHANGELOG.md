@@ -1,3 +1,17 @@
+## 1.6.0 (2018-06-26)
+
+Enhancements:
+
+  - Added significant figures to floor and ceiling functions.
+  - Added min and max functions.
+  - Allowing capital letters in strings.
+
+## 1.5.0 (2017-09-05)
+
+Enhancements:
+
+  - Added floor and ceiling functions.
+
 ## 1.4.0 (2016-12-21)
 
 Enhancements:
