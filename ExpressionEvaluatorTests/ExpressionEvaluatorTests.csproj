@@ -59,8 +59,10 @@
     <Compile Include="EdgeCaseNestedToNumber.cs" />
     <Compile Include="EdgeCaseTests.cs" />
     <Compile Include="FloorTest.cs" />
+    <Compile Include="MaxTests.cs" />
     <Compile Include="ModuloTests.cs" />
     <Compile Include="RoundTests.cs" />
+    <Compile Include="MinTests.cs" />
     <Compile Include="SumTests.cs" />
     <Compile Include="IsNumberFunctionTests.cs" />
     <Compile Include="TimeComonentTests.cs" />

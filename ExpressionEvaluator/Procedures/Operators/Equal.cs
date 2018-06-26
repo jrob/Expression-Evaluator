@@ -10,7 +10,7 @@ namespace ExpressionEvaluator.Procedures.Operators
             _name2 = "Equal";
             DecimalDecimalBool = (x, y) => x == y;
             BoolBoolBool = (x, y) => x == y;
-            StringStringBool = (x, y) => x == y;
+            StringStringBool = (x, y) => x.ToLower() == y.ToLower();
             TimespanTimespanBool = (x, y) => x == y;
             DatetimeDatetimeBool = (x, y) => x == y;
             DecimalDoubleDouble = (x, y) => double.NaN;

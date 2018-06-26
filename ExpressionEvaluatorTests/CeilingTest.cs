@@ -89,11 +89,36 @@ namespace ExpressionEvaluatorTests
             func.Function = @"ceiling(1.5*0)";
             Assert.AreEqual(0, func.EvaluateNumeric());
         }
+
         [Test]
         public void Ceiling_InnerCalculationParenthesisSum_CorrectValue()
         {
             func.Function = @"ceiling(6+{3/sum(4,4)})";
             Assert.AreEqual(7, func.EvaluateNumeric());
+        }
+
+        [Test]
+        [ExpectedException(
+            typeof(ExpressionException), ExpectedMessage = "Ceiling",
+            MatchType = MessageMatch.Contains)]
+        public void Ceiling_TooManyParameters_CorrectValue()
+        {
+            func.Function = @"ceiling(1.123, 2, 3)";
+            Assert.AreEqual(1.12m, func.EvaluateNumeric());
+        }
+
+        [Test]
+        public void Ceiling_TrailingDigits001_CorrectValue()
+        {
+            func.Function = @"ceiling(1.123, 1)";
+            Assert.AreEqual(1.2m, func.EvaluateNumeric());
+        }
+
+        [Test]
+        public void Ceiling_TrailingDigits002_CorrectValue()
+        {
+            func.Function = @"ceiling(1.123, 2)";
+            Assert.AreEqual(1.13m, func.EvaluateNumeric());
         }
     }
 }
