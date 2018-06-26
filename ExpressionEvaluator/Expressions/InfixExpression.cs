@@ -206,8 +206,7 @@ namespace Vanderbilt.Biostatistics.Wfccm2
                     expression, m => {
                         var name = Guid.NewGuid()
                             .ToString("N");
-                        var value = m.Value.Substring(1, m.Value.Length - 2)
-                            .ToLower();
+                        var value = m.Value.Substring(1, m.Value.Length - 2);
                         var newVar = new GenericVariable<string>(name, value);
                         AutoVariables.Add(name, newVar);
                         return " " + name + " ";
