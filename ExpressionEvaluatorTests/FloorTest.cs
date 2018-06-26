@@ -96,5 +96,29 @@ namespace ExpressionEvaluatorTests
             func.Function = @"floor(6+{3/sum(4,4)})";
             Assert.AreEqual(6, func.EvaluateNumeric());
         }
+
+        [Test]
+        [ExpectedException(
+            typeof(ExpressionException), ExpectedMessage = "Floor",
+            MatchType = MessageMatch.Contains)]
+        public void Floor_TooManyParameters_CorrectValue()
+        {
+            func.Function = @"floor(1.123, 2, 3)";
+            Assert.AreEqual(1.12m, func.EvaluateNumeric());
+        }
+
+        [Test]
+        public void Floor_TrailingDigits001_CorrectValue()
+        {
+            func.Function = @"floor(1.123, 1)";
+            Assert.AreEqual(1.1m, func.EvaluateNumeric());
+        }
+
+        [Test]
+        public void Floor_TrailingDigits002_CorrectValue()
+        {
+            func.Function = @"floor(1.123, 2)";
+            Assert.AreEqual(1.12m, func.EvaluateNumeric());
+        }
     }
 }
