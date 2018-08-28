@@ -1,3 +1,9 @@
+## 1.7.0 (2018-08-28)
+
+Enhancements:
+
+  - Added avg and stddev functions.
+
 ## 1.6.0 (2018-06-26)
 
 Enhancements:
