@@ -60,12 +60,14 @@
     <Compile Include="Keywords\Variable.cs" />
     <Compile Include="Keywords\VariableDelimiter.cs" />
     <Compile Include="Procedures\Functions\Absolute.cs" />
+    <Compile Include="Procedures\Functions\StdDev.cs" />
     <Compile Include="Procedures\Functions\Ceiling.cs" />
     <Compile Include="Procedures\Functions\Concatenate.cs" />
     <Compile Include="Procedures\Functions\Contains.cs" />
     <Compile Include="Procedures\Functions\DaysComponent.cs" />
     <Compile Include="Procedures\Functions\Floor.cs" />
     <Compile Include="Procedures\Functions\HoursComponent.cs" />
+    <Compile Include="Procedures\Functions\Avg.cs" />
     <Compile Include="Procedures\Functions\Max.cs" />
     <Compile Include="Procedures\Functions\Min.cs" />
     <Compile Include="Procedures\Functions\MinutesComponent.cs" />

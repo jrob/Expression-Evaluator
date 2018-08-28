@@ -76,6 +76,8 @@ namespace Vanderbilt.Biostatistics.Wfccm2
                 new Round(60),
                 new Ceiling(60),
                 new Floor(60),
+                new Avg(60),
+                new StdDev(60),
                 new Concatenate(60),
                 new Conditional("if", 70, 2, false, false),
                 new Conditional("elseif", 70, 2, false, false),
