@@ -61,6 +61,7 @@
     <Compile Include="FloorTest.cs" />
     <Compile Include="MaxTests.cs" />
     <Compile Include="ModuloTests.cs" />
+    <Compile Include="AvgTests.cs" />
     <Compile Include="RoundTests.cs" />
     <Compile Include="MinTests.cs" />
     <Compile Include="SumTests.cs" />
