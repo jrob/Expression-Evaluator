@@ -50,6 +50,7 @@
     <Compile Include="AbsFunctionTests.generated.cs" />
     <Compile Include="AdditionOperatorTests.generated.cs" />
     <Compile Include="AndOperatorTests.generated.cs" />
+    <Compile Include="StdDevTests.cs" />
     <Compile Include="BooleanOperatorTests.cs" />
     <Compile Include="CaseTests.generated.cs" />
     <Compile Include="CeilingTest.cs" />

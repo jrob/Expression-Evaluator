@@ -60,6 +60,7 @@
     <Compile Include="Keywords\Variable.cs" />
     <Compile Include="Keywords\VariableDelimiter.cs" />
     <Compile Include="Procedures\Functions\Absolute.cs" />
+    <Compile Include="Procedures\Functions\StdDev.cs" />
     <Compile Include="Procedures\Functions\Ceiling.cs" />
     <Compile Include="Procedures\Functions\Concatenate.cs" />
     <Compile Include="Procedures\Functions\Contains.cs" />
