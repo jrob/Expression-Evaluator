@@ -530,59 +530,51 @@ namespace ExpressionEvaluatorTests
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Operator error", MatchType = MessageMatch.Contains)]
         public void DivisionOperator_MalformedExpressionPositiveWholeLeftOfOperator_ThrowsException()
         {
-            _func.Function = "2 /";
+            Assert.Throws<ExpressionException>(() => _func.Function = "2 /", "Operator error");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Operator error", MatchType = MessageMatch.Contains)]
         public void DivisionOperator_MalformedExpressionPositiveFractionLeftOfOperator_ThrowsException()
         {
-            _func.Function = "0.5 /";
+            Assert.Throws<ExpressionException>(() => _func.Function = "0.5 /", "Operator error");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Operator error", MatchType = MessageMatch.Contains)]
         public void DivisionOperator_MalformedExpressionNegativeWholeLeftOfOperator_ThrowsException()
         {
-            _func.Function = "-2 /";
+            Assert.Throws<ExpressionException>(() => _func.Function = "-2 /", "Operator error");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Operator error", MatchType = MessageMatch.Contains)]
         public void DivisionOperator_MalformedExpressionNegativeFractionLeftOfOperator_ThrowsException()
         {
-            _func.Function = "-0.5 /";
+            Assert.Throws<ExpressionException>(() => _func.Function = "-0.5 /", "Operator error");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Operator error", MatchType = MessageMatch.Contains)]
         public void DivisionOperator_MalformedExpressionPositiveWholeRightOfOperator_ThrowsException()
         {
-            _func.Function = "/ 2";
+            Assert.Throws<ExpressionException>(() => _func.Function = "/ 2", "Operator error");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Operator error", MatchType = MessageMatch.Contains)]
         public void DivisionOperator_MalformedExpressionPositiveFractionRightOfOperator_ThrowsException()
         {
-            _func.Function = "/ 0.5";
+            Assert.Throws<ExpressionException>(() => _func.Function = "/ 0.5", "Operator error");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Operator error", MatchType = MessageMatch.Contains)]
         public void DivisionOperator_MalformedExpressionNegativeWholeRightOfOperator_ThrowsException()
         {
-            _func.Function = "/ -2";
+            Assert.Throws<ExpressionException>(() => _func.Function = "/ -2", "Operator error");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Operator error", MatchType = MessageMatch.Contains)]
         public void DivisionOperator_MalformedExpressionNegativeFractionRightOfOperator_ThrowsException()
         {
-            _func.Function = "/ -0.5";
+            Assert.Throws<ExpressionException>(() => _func.Function = "/ -0.5", "Operator error");
         }
 
     }

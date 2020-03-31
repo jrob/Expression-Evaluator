@@ -22,10 +22,9 @@ namespace ExpressionEvaluatorTests
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException))]
         public void Grouping_OutOfOrder001_ExpressionException()
         {
-            _func.Function = @"if (true { ) 2 } else { 1 }";
+            Assert.Throws<ExpressionException>(() => _func.Function = @"if (true { ) 2 } else { 1 }", "Operator error");
         }
 
         [Test]
@@ -58,27 +57,21 @@ namespace ExpressionEvaluatorTests
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Operator error",
-            MatchType = MessageMatch.Contains)]
         public void IfElse_ElseNoOperator_ExpressionException()
         {
-            _func.Function = @"if (true)  { 1  } else { }";
+            Assert.Throws<ExpressionException>(() => _func.Function = @"if (true)  { 1  } else { }", "Operator error");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Conditional Error",
-            MatchType = MessageMatch.Contains)]
         public void IfElse_ElseWithBoolean001_ExpressionException()
         {
-            _func.Function = @"if (true) { 2 } else (true) { 1 }";
+            Assert.Throws<ExpressionException>(() => _func.Function = @"if (true) { 2 } else (true) { 1 }", "Conditional Error");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Conditional Error",
-            MatchType = MessageMatch.Contains)]
         public void IfElse_ElseWithBoolean002_ExpressionException()
         {
-            _func.Function = @"if (true) { 2 } else if (true) { 1 } else (true) { 1 }";
+            Assert.Throws<ExpressionException>(() => _func.Function = @"if (true) { 2 } else if (true) { 1 } else (true) { 1 }", "Conditional Error");
         }
 
         [Test]
@@ -90,53 +83,42 @@ namespace ExpressionEvaluatorTests
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException))]
         public void IfElse_FunctionInTruePathThrowsException_ExceptionThrown()
         {
             _func.Function = "if (false) { 1 + 1 } else { TotalDays(a) }";
             _func.AddSetVariable("a", "fail");
-            _func.EvaluateNumeric();
+            Assert.Throws<ExpressionException>(() => _func.EvaluateNumeric(), "Operator error");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Conditional Error",
-            MatchType = MessageMatch.Contains)]
         public void IfElse_IfElseMismatch001_ExpressionException()
         {
-            _func.Function = @"if (true) { 2 } else if { 1 }";
+            Assert.Throws<ExpressionException>(() => _func.Function = @"if (true) { 2 } else if { 1 }", "Conditional Error");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Conditional Error",
-            MatchType = MessageMatch.Contains)]
         public void IfElse_IfElseMismatch002_ExpressionException()
         {
-            _func.Function = @"if (true) { 2 } else if (true) { 1 }";
+            Assert.Throws<ExpressionException>(() => _func.Function = @"if (true) { 2 } else if (true) { 1 }", "Conditional Error");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Operator error",
-            MatchType = MessageMatch.Contains)]
         public void IfElse_IfNoExpression_ExpressionException()
         {
-            _func.Function = @"if (true)  {  } else { 1 }";
+            Assert.Throws<ExpressionException>(() => _func.Function = @"if (true)  {  } else { 1 }", "Operator error");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Operator error",
-            MatchType = MessageMatch.Contains)]
         public void IfElse_IfNoOperator_ExpressionException()
         {
-            _func.Function = @"if  {  } else { 1 }";
+            Assert.Throws<ExpressionException>(() => _func.Function = @"if  {  } else { 1 }", "Operator error");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "variable type error",
-            MatchType = MessageMatch.Contains)]
         public void IfElse_IfStringOperator_ExpressionException()
         {
             _func.Function = @"if ( val )  { 1 } else { 1 }";
-            _func.EvaluateNumeric();
+            Assert.Throws<ExpressionException>(() => _func.EvaluateNumeric(), "variable type error");
         }
 
         [Test]
@@ -192,11 +174,9 @@ namespace ExpressionEvaluatorTests
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Conditional Error",
-            MatchType = MessageMatch.Contains)]
         public void IfElse_NestedElseWithBoolean001_ExpressionException()
         {
-            _func.Function = @"if (true) { if (true) { 3 } else (true) { 2 } } else { 1 }";
+            Assert.Throws<ExpressionException>(() => _func.Function = @"if (true) { if (true) { 3 } else (true) { 2 } } else { 1 }", "Conditional Error");
         }
 
         [Test]
@@ -216,19 +196,15 @@ namespace ExpressionEvaluatorTests
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Conditional Error",
-            MatchType = MessageMatch.Contains)]
         public void IfElse_OutOfOrder001_ExpressionException()
         {
-            _func.Function = @"else { 2 } if (true) { 1 }";
+            Assert.Throws<ExpressionException>(() => _func.Function = @"else { 2 } if (true) { 1 }", "Conditional Error");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Conditional Error",
-            MatchType = MessageMatch.Contains)]
         public void IfElse_OutOfOrder003_ExpressionException()
         {
-            _func.Function = @"if (true) { 2 } if else (true) { 1 }";
+            Assert.Throws<ExpressionException>(() => _func.Function = @"if (true) { 2 } if else (true) { 1 }", "Conditional Error");
         }
 
         [Test]

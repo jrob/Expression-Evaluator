@@ -146,31 +146,27 @@ namespace ExpressionEvaluatorTests
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Operator error", MatchType = MessageMatch.Contains)]
         public void OrOperator_MalformedExpressionBooleanTrueLeftOfOperator_ThrowsException()
         {
-            _func.Function = "True ||";
+            Assert.Throws<ExpressionException>(() => _func.Function = "True ||", "Operator error");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Operator error", MatchType = MessageMatch.Contains)]
         public void OrOperator_MalformedExpressionBooleanFalseLeftOfOperator_ThrowsException()
         {
-            _func.Function = "False ||";
+            Assert.Throws<ExpressionException>(() => _func.Function = "False ||", "Operator error");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Operator error", MatchType = MessageMatch.Contains)]
         public void OrOperator_MalformedExpressionBooleanTrueRightOfOperator_ThrowsException()
         {
-            _func.Function = "|| True";
+            Assert.Throws<ExpressionException>(() => _func.Function = "|| True", "Operator error");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Operator error", MatchType = MessageMatch.Contains)]
         public void OrOperator_MalformedExpressionBooleanFalseRightOfOperator_ThrowsException()
         {
-            _func.Function = "|| False";
+            Assert.Throws<ExpressionException>(() => _func.Function = "|| False", "Operator error");
         }
 
     }

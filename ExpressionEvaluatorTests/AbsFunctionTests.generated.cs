@@ -46,87 +46,75 @@ namespace ExpressionEvaluatorTests
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Close missing", MatchType = MessageMatch.Contains)]
         public void AbsOperator_MalformedExpressionMissingRightParenPositiveWholeArgument_ThrowsException()
         {
-            _func.Function = "abs(2";
+            Assert.Throws<ExpressionException>(() => _func.Function = "abs(2", "Close missing");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Close missing", MatchType = MessageMatch.Contains)]
         public void AbsOperator_MalformedExpressionMissingRightParenPositiveFractionArgument_ThrowsException()
         {
-            _func.Function = "abs(0.5";
+            Assert.Throws<ExpressionException>(() => _func.Function = "abs(0.5", "Close missing");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Close missing", MatchType = MessageMatch.Contains)]
         public void AbsOperator_MalformedExpressionMissingRightParenNegativeWholeArgument_ThrowsException()
         {
-            _func.Function = "abs(-2";
+            Assert.Throws<ExpressionException>(() => _func.Function = "abs(-2", "Close missing");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Close missing", MatchType = MessageMatch.Contains)]
         public void AbsOperator_MalformedExpressionMissingRightParenNegativeFractionArgument_ThrowsException()
         {
-            _func.Function = "abs(-0.5";
+            Assert.Throws<ExpressionException>(() => _func.Function = "abs(0.5", "Close missing");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Open missing", MatchType = MessageMatch.Contains)]
         public void AbsOperator_MalformedExpressionMissingLeftParenPositiveWholeArgument_ThrowsException()
         {
-            _func.Function = "abs 2)";
+            Assert.Throws<ExpressionException>(() => _func.Function = "abs 2)", "Close missing");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Open missing", MatchType = MessageMatch.Contains)]
         public void AbsOperator_MalformedExpressionMissingLeftParenPositiveFractionArgument_ThrowsException()
         {
-            _func.Function = "abs 0.5)";
+            Assert.Throws<ExpressionException>(() => _func.Function = "abs 0.5)", "Close missing");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Open missing", MatchType = MessageMatch.Contains)]
         public void AbsOperator_MalformedExpressionMissingLeftParenNegativeWholeArgument_ThrowsException()
         {
-            _func.Function = "abs -2)";
+            Assert.Throws<ExpressionException>(() => _func.Function = "abs -2)", "Open missing");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Open missing", MatchType = MessageMatch.Contains)]
         public void AbsOperator_MalformedExpressionMissingLeftParenNegativeFractionArgument_ThrowsException()
         {
-            _func.Function = "abs -0.5)";
+            Assert.Throws<ExpressionException>(() => _func.Function = "abs -0.5)", "Open missing");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Open and close parenthesis required", MatchType = MessageMatch.Contains)]
         public void AbsOperator_MalformedExpressionMissingBothParenthesisPositiveWholeArgument_ThrowsException()
         {
-            _func.Function = "abs 2";
+            Assert.Throws<ExpressionException>(() => _func.Function = "abs 2", "Open and close parenthesis required");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Open and close parenthesis required", MatchType = MessageMatch.Contains)]
         public void AbsOperator_MalformedExpressionMissingBothParenthesisPositiveFractionArgument_ThrowsException()
         {
-            _func.Function = "abs 0.5";
+            Assert.Throws<ExpressionException>(() => _func.Function = "abs 0.5", "Open and close parenthesis required");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Open and close parenthesis required", MatchType = MessageMatch.Contains)]
         public void AbsOperator_MalformedExpressionMissingBothParenthesisNegativeWholeArgument_ThrowsException()
         {
-            _func.Function = "abs -2";
+            Assert.Throws<ExpressionException>(() => _func.Function = "abs -2", "Open and close parenthesis required");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Open and close parenthesis required", MatchType = MessageMatch.Contains)]
         public void AbsOperator_MalformedExpressionMissingBothParenthesisNegativeFractionArgument_ThrowsException()
         {
-            _func.Function = "abs -0.5";
+            Assert.Throws<ExpressionException>(() => _func.Function = "abs -0.5", "Open and close parenthesis required");
         }
 
     }

@@ -530,59 +530,52 @@ namespace ExpressionEvaluatorTests
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Operator error", MatchType = MessageMatch.Contains)]
         public void AdditionOperator_MalformedExpressionPositiveWholeLeftOfOperator_ThrowsException()
         {
-            _func.Function = "2 +";
+            Assert.Throws<ExpressionException>(() => _func.Function = "2 +", "Operator error");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Operator error", MatchType = MessageMatch.Contains)]
         public void AdditionOperator_MalformedExpressionPositiveFractionLeftOfOperator_ThrowsException()
         {
-            _func.Function = "0.5 +";
+            Assert.Throws<ExpressionException>(() => _func.Function = "0.5 +", "Operator error");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Operator error", MatchType = MessageMatch.Contains)]
         public void AdditionOperator_MalformedExpressionNegativeWholeLeftOfOperator_ThrowsException()
         {
-            _func.Function = "-2 +";
+            Assert.Throws<ExpressionException>(() => _func.Function = "-2 +", "Operator error");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Operator error", MatchType = MessageMatch.Contains)]
         public void AdditionOperator_MalformedExpressionNegativeFractionLeftOfOperator_ThrowsException()
         {
-            _func.Function = "-0.5 +";
+            Assert.Throws<ExpressionException>(() => _func.Function = "-0.5 +", "Operator error");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Operator error", MatchType = MessageMatch.Contains)]
         public void AdditionOperator_MalformedExpressionPositiveWholeRightOfOperator_ThrowsException()
         {
-            _func.Function = "+ 2";
+            Assert.Throws<ExpressionException>(() => _func.Function = "+ 2", "Operator error");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Operator error", MatchType = MessageMatch.Contains)]
         public void AdditionOperator_MalformedExpressionPositiveFractionRightOfOperator_ThrowsException()
         {
-            _func.Function = "+ 0.5";
+            Assert.Throws<ExpressionException>(() => _func.Function = "+ 0.5", "Operator error");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Operator error", MatchType = MessageMatch.Contains)]
         public void AdditionOperator_MalformedExpressionNegativeWholeRightOfOperator_ThrowsException()
         {
-            _func.Function = "+ -2";
+            Assert.Throws<ExpressionException>(() => _func.Function = "+ -2", "Operator error");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Operator error", MatchType = MessageMatch.Contains)]
         public void AdditionOperator_MalformedExpressionNegativeFractionRightOfOperator_ThrowsException()
         {
-            _func.Function = "+ -0.5";
+            Assert.Throws<ExpressionException>(() => _func.Function = "+ -0.5", "Operator error");
+            ;
         }
 
     }

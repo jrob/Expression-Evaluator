@@ -21,19 +21,15 @@ namespace ExpressionEvaluatorTests
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Operator error",
-            MatchType = MessageMatch.Contains)]
         public void And_BadExpression001_ExpressionException()
         {
-            _func.Function = " && true";
+            Assert.Throws<ExpressionException>(() => _func.Function = " && true", "Operator error");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Operator error",
-            MatchType = MessageMatch.Contains)]
         public void And_BadExpression002_ExpressionException()
         {
-            _func.Function = "true && ";
+            Assert.Throws<ExpressionException>(() => _func.Function = "true && ", "Operator error");
         }
 
         [Test]
@@ -65,19 +61,15 @@ namespace ExpressionEvaluatorTests
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Operator error",
-            MatchType = MessageMatch.Contains)]
         public void Equal_BadExpression001_ExpressionException()
         {
-            _func.Function = "== 5.2";
+            Assert.Throws<ExpressionException>(() => _func.Function = "== 5.2", "Operator error");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Operator error",
-            MatchType = MessageMatch.Contains)]
         public void Equal_BadExpression002_ExpressionException()
         {
-            _func.Function = "4 ==";
+            Assert.Throws<ExpressionException>(() => _func.Function = "4 ==", "Operator error");
         }
 
         [Test]
@@ -95,19 +87,15 @@ namespace ExpressionEvaluatorTests
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Operator error",
-            MatchType = MessageMatch.Contains)]
         public void GreaterEqual_BadExpression001_ExpressionException()
         {
-            _func.Function = "4 >=";
+            Assert.Throws<ExpressionException>(() => _func.Function = "4 >=", "Operator error");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Operator error",
-            MatchType = MessageMatch.Contains)]
         public void GreaterEqual_BadExpression002_ExpressionException()
         {
-            _func.Function = ">= 4";
+            Assert.Throws<ExpressionException>(() => _func.Function = ">= 4", "Operator error");
         }
 
         [Test]
@@ -132,19 +120,15 @@ namespace ExpressionEvaluatorTests
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Operator error",
-            MatchType = MessageMatch.Contains)]
         public void Greater_BadExpression001_ExpressionException()
         {
-            _func.Function = "> 2";
+            Assert.Throws<ExpressionException>(() => _func.Function = "> 2", "Operator error");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Operator error",
-            MatchType = MessageMatch.Contains)]
         public void Greater_BadExpression002_ExpressionException()
         {
-            _func.Function = "4 >";
+            Assert.Throws<ExpressionException>(() => _func.Function = "4 >", "Operator error");
         }
 
         [Test]
@@ -162,19 +146,15 @@ namespace ExpressionEvaluatorTests
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Operator error",
-            MatchType = MessageMatch.Contains)]
         public void LessEqual_BadExpression001_ExpressionException()
         {
-            _func.Function = "<= 6";
+            Assert.Throws<ExpressionException>(() => _func.Function = "<= 6", "Operator error");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Operator error",
-            MatchType = MessageMatch.Contains)]
         public void LessEqual_BadExpression002_ExpressionException()
         {
-            _func.Function = "4 <=";
+            Assert.Throws<ExpressionException>(() => _func.Function = "4 <=", "Operator error");
         }
 
         [Test]
@@ -199,19 +179,15 @@ namespace ExpressionEvaluatorTests
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Operator error",
-            MatchType = MessageMatch.Contains)]
         public void Less_BadExpression001_ExpressionException()
         {
-            _func.Function = "< 5.2";
+            Assert.Throws<ExpressionException>(() => _func.Function = "< 5.2", "Operator error");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Operator error",
-            MatchType = MessageMatch.Contains)]
         public void Less_BadExpression002_ExpressionException()
         {
-            _func.Function = "4 <";
+            Assert.Throws<ExpressionException>(() => _func.Function = "4 <", "Operator error");
         }
 
         [Test]
@@ -257,91 +233,69 @@ namespace ExpressionEvaluatorTests
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Function error",
-            MatchType = MessageMatch.Contains)]
         public void MulitpleOperators_BadExpression008_ExpressionException()
         {
-            _func.Function = "4 > abs(neg )";
+            Assert.Throws<ExpressionException>(() => _func.Function = "4 > abs(neg )", "Operator error");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Function error",
-            MatchType = MessageMatch.Contains)]
         public void MulitpleOperators_BadExpression009_ExpressionException()
         {
-            _func.Function = " > abs(neg 3.2)";
+            Assert.Throws<ExpressionException>(() => _func.Function = " > abs(neg 3.2)", "Operator error");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException),
-            ExpectedMessage = "Expression formatted incorrecty", MatchType = MessageMatch.Contains)]
         public void MulitpleOperators_BadExpression010_ExpressionException()
         {
-            _func.Function = "4 neg(abs(5.2))";
+            Assert.Throws<ExpressionException>(() => _func.Function = "4 neg(abs(5.2))", "Expression formatted incorrecty");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Operator error",
-            MatchType = MessageMatch.Contains)]
         public void MultipleBooleanOperators_BadExpression001_ExpressionException()
         {
-            _func.Function = "true ||  && false || false";
+            Assert.Throws<ExpressionException>(() => _func.Function = "true ||  && false || false", "Operator error");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Operator error",
-            MatchType = MessageMatch.Contains)]
         public void MultipleBooleanOperators_BadExpression002_ExpressionException()
         {
-            _func.Function = "(true || false) && ( || false)";
+            Assert.Throws<ExpressionException>(() => _func.Function = "(true || false) && ( || false)", "Operator error");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Operator error",
-            MatchType = MessageMatch.Contains)]
         public void MultipleOperators_BadExpression003_ExpressionException()
         {
-            _func.Function = "(true || false) && false || ";
+            Assert.Throws<ExpressionException>(() => _func.Function = "(true || false) && false || ", "Operator error");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Operator error",
-            MatchType = MessageMatch.Contains)]
         public void MultipleOperators_BadExpression004_ExpressionException()
         {
-            _func.Function = "(true || ) && true";
+            Assert.Throws<ExpressionException>(() => _func.Function = "(true || ) && true", "Operator error");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Operator error",
-            MatchType = MessageMatch.Contains)]
         public void NotEqual_BadExpression001_ExpressionException()
         {
-            _func.Function = "4 !=";
+            Assert.Throws<ExpressionException>(() => _func.Function = "4 !=", "Operator error");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Operator error",
-            MatchType = MessageMatch.Contains)]
         public void NotEqual_BadExpression002_ExpressionException()
         {
-            _func.Function = "!= 4";
+            Assert.Throws<ExpressionException>(() => _func.Function = "!= 4", "Operator error");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Operator error",
-            MatchType = MessageMatch.Contains)]
         public void Or_BadExpression001_ExpressionException()
         {
-            _func.Function = "true || ";
+            Assert.Throws<ExpressionException>(() => _func.Function = "true || ", "Operator error");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Operator error",
-            MatchType = MessageMatch.Contains)]
         public void Or_BadExpression002_ExpressionException()
         {
-            _func.Function = "|| false";
+            Assert.Throws<ExpressionException>(() => _func.Function = "|| false", "Operator error");
         }
 
         [Test]

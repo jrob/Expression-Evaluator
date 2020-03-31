@@ -146,31 +146,27 @@ namespace ExpressionEvaluatorTests
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Operator error", MatchType = MessageMatch.Contains)]
         public void AndOperator_MalformedExpressionBooleanTrueLeftOfOperator_ThrowsException()
         {
-            _func.Function = "True &&";
+            Assert.Throws<ExpressionException>(() => _func.Function = "True &&", "Operator error");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Operator error", MatchType = MessageMatch.Contains)]
         public void AndOperator_MalformedExpressionBooleanFalseLeftOfOperator_ThrowsException()
         {
-            _func.Function = "False &&";
+            Assert.Throws<ExpressionException>(() => _func.Function = "False &&", "Operator error");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Operator error", MatchType = MessageMatch.Contains)]
         public void AndOperator_MalformedExpressionBooleanTrueRightOfOperator_ThrowsException()
         {
-            _func.Function = "&& True";
+            Assert.Throws<ExpressionException>(() => _func.Function = "&& True", "Operator error");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Operator error", MatchType = MessageMatch.Contains)]
         public void AndOperator_MalformedExpressionBooleanFalseRightOfOperator_ThrowsException()
         {
-            _func.Function = "&& False";
+            Assert.Throws<ExpressionException>(() => _func.Function = "&& False", "Operator error");
         }
 
     }

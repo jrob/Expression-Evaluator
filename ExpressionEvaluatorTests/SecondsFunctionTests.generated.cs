@@ -46,87 +46,75 @@ namespace ExpressionEvaluatorTests
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Close missing", MatchType = MessageMatch.Contains)]
         public void SecondsOperator_MalformedExpressionMissingRightParenPositiveWholeArgument_ThrowsException()
         {
-            _func.Function = "seconds(2";
+            Assert.Throws<ExpressionException>(() => _func.Function = "seconds(2", "Close missing");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Close missing", MatchType = MessageMatch.Contains)]
         public void SecondsOperator_MalformedExpressionMissingRightParenPositiveFractionArgument_ThrowsException()
         {
-            _func.Function = "seconds(0.5";
+            Assert.Throws<ExpressionException>(() => _func.Function = "seconds(0.5", "Close missing");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Close missing", MatchType = MessageMatch.Contains)]
         public void SecondsOperator_MalformedExpressionMissingRightParenNegativeWholeArgument_ThrowsException()
         {
-            _func.Function = "seconds(-2";
+            Assert.Throws<ExpressionException>(() => _func.Function = "seconds(-2", "Close missing");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Close missing", MatchType = MessageMatch.Contains)]
         public void SecondsOperator_MalformedExpressionMissingRightParenNegativeFractionArgument_ThrowsException()
         {
-            _func.Function = "seconds(-0.5";
+            Assert.Throws<ExpressionException>(() => _func.Function = "seconds(-0.5", "Close missing");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Open missing", MatchType = MessageMatch.Contains)]
         public void SecondsOperator_MalformedExpressionMissingLeftParenPositiveWholeArgument_ThrowsException()
         {
-            _func.Function = "seconds 2)";
+            Assert.Throws<ExpressionException>(() => _func.Function = "seconds 2)", "Open missing");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Open missing", MatchType = MessageMatch.Contains)]
         public void SecondsOperator_MalformedExpressionMissingLeftParenPositiveFractionArgument_ThrowsException()
         {
-            _func.Function = "seconds 0.5)";
+            Assert.Throws<ExpressionException>(() => _func.Function = "seconds 0.5)", "Open missing");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Open missing", MatchType = MessageMatch.Contains)]
         public void SecondsOperator_MalformedExpressionMissingLeftParenNegativeWholeArgument_ThrowsException()
         {
-            _func.Function = "seconds -2)";
+            Assert.Throws<ExpressionException>(() => _func.Function = "seconds -2)", "Open missing");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Open missing", MatchType = MessageMatch.Contains)]
         public void SecondsOperator_MalformedExpressionMissingLeftParenNegativeFractionArgument_ThrowsException()
         {
-            _func.Function = "seconds -0.5)";
+            Assert.Throws<ExpressionException>(() => _func.Function = "seconds -0.5)", "Open missing");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Open and close parenthesis required", MatchType = MessageMatch.Contains)]
         public void SecondsOperator_MalformedExpressionMissingBothParenthesisPositiveWholeArgument_ThrowsException()
         {
-            _func.Function = "seconds 2";
+            Assert.Throws<ExpressionException>(() => _func.Function = "seconds 2", "Open and close parenthesis required");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Open and close parenthesis required", MatchType = MessageMatch.Contains)]
         public void SecondsOperator_MalformedExpressionMissingBothParenthesisPositiveFractionArgument_ThrowsException()
         {
-            _func.Function = "seconds 0.5";
+            Assert.Throws<ExpressionException>(() => _func.Function = "seconds 0.5", "Open and close parenthesis required");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Open and close parenthesis required", MatchType = MessageMatch.Contains)]
         public void SecondsOperator_MalformedExpressionMissingBothParenthesisNegativeWholeArgument_ThrowsException()
         {
-            _func.Function = "seconds -2";
+            Assert.Throws<ExpressionException>(() => _func.Function = "seconds -2", "Open and close parenthesis required");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Open and close parenthesis required", MatchType = MessageMatch.Contains)]
         public void SecondsOperator_MalformedExpressionMissingBothParenthesisNegativeFractionArgument_ThrowsException()
         {
-            _func.Function = "seconds -0.5";
+            Assert.Throws<ExpressionException>(() => _func.Function = "seconds -0.5", "Open and close parenthesis required");
         }
 
     }

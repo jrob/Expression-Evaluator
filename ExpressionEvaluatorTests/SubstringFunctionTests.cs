@@ -22,14 +22,10 @@ namespace ExpressionEvaluatorTests
         }
 
         [Test]
-        [NUnit.Framework.ExpectedException(typeof(ExpressionException),
-            ExpectedMessage =
-                "One or more of the substring parameters contain decimals and not integers",
-            MatchType = MessageMatch.Contains)]
         public void SubstringOperator_CalledWithFloat_IsNotCorrect()
         {
             _func.Function = "substring('hello', 0.1, 3)";
-            _func.Evaluate<String>();
+            Assert.Throws<ExpressionException>(() => _func.Evaluate<String>(), "One or more of the substring parameters contain decimals and not integers");
         }
 
         [Test]
@@ -40,23 +36,17 @@ namespace ExpressionEvaluatorTests
         }
 
         [Test]
-        [NUnit.Framework.ExpectedException(typeof(ExpressionException),
-            ExpectedMessage = "StartIndex cannot be less than zero.",
-            MatchType = MessageMatch.Contains)]
         public void SubstringOperator_CalledWithNegativeIndex_IsCorrect()
         {
             _func.Function = "substring('hello', -1, 3)";
-            _func.Evaluate<String>();
+            Assert.Throws<ExpressionException>(() => _func.Evaluate<String>(), "StartIndex cannot be less than zero.");
         }
 
         [Test]
-        [NUnit.Framework.ExpectedException(typeof(InvalidTypeExpressionException),
-            ExpectedMessage = "Result was null because of an invalid type",
-            MatchType = MessageMatch.Contains)]
         public void SubstringOperator_ExecuteSubstringOnNonString_OperatorError()
         {
             _func.Function = "substring(3a, 0, 1)";
-            _func.Evaluate<String>();
+            Assert.Throws<InvalidTypeExpressionException>(() => _func.Evaluate<String>(), "Result was null because of an invalid type");
         }
 
         [Test]
@@ -67,36 +57,26 @@ namespace ExpressionEvaluatorTests
         }
 
         [Test]
-        [NUnit.Framework.ExpectedException(typeof(ExpressionException),
-            ExpectedMessage =
-                "One or more of the substring parameters contain decimals and not integers",
-            MatchType = MessageMatch.Contains)]
         public void SubstringOperator_PositiveFractionNotIntegerWithLeftVariable_IsNotCorrect()
         {
             _func.Function = "substring('hello', 0, a)";
             _func.AddSetVariable("a", 2.1);
-            _func.Evaluate<String>();
+            Assert.Throws<ExpressionException>(() => _func.Evaluate<String>(), "One or more of the substring parameters contain decimals and not integers");
         }
 
         [Test]
-        [NUnit.Framework.ExpectedException(typeof(ExpressionException),
-            ExpectedMessage = "Substring operator used incorrectly",
-            MatchType = MessageMatch.Contains)]
         public void SubstringOperator_PositiveFractionWithLeftVariableOfWrongType_IsNotCorrect()
         {
             _func.Function = "substring('hello', 0, a)";
             _func.AddSetVariable("a", "b");
-            _func.Evaluate<String>();
+            Assert.Throws<ExpressionException>(() => _func.Evaluate<String>(), "Substring operator used incorrectly");
         }
 
         [Test]
-        [NUnit.Framework.ExpectedException(typeof(InvalidTypeExpressionException),
-            ExpectedMessage = "Result was null because of an invalid type",
-            MatchType = MessageMatch.Contains)]
         public void SubstringOperator_VariableWithoutSetVariable_OperatorError()
         {
             _func.Function = "substring('hello', a, 2)";
-            _func.Evaluate<String>();
+            Assert.Throws<InvalidTypeExpressionException>(() => _func.Evaluate<String>(), "Result was null because of an invalid type");
         }
     }
 }

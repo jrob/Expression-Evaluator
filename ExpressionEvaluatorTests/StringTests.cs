@@ -69,12 +69,9 @@ namespace ExpressionEvaluatorTests
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "String grouping error",
-            MatchType = MessageMatch.Contains)]
         public void String_TooManySeperators_Exception()
         {
-            _func.Function = "'aoeu ''";
-            _func.Evaluate<string>();
+            Assert.Throws<ExpressionException>(() => _func.Function = "'aoeu ''", "String grouping error");
         }
 
         [Test]

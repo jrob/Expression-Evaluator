@@ -146,31 +146,27 @@ namespace ExpressionEvaluatorTests
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Operator error", MatchType = MessageMatch.Contains)]
         public void NotEqualStringOperator_MalformedExpressionStringFirstLeftOfOperator_ThrowsException()
         {
-            _func.Function = "'first' !=";
+            Assert.Throws<ExpressionException>(() => _func.Function = "'first' !=", "Operator error");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Operator error", MatchType = MessageMatch.Contains)]
         public void NotEqualStringOperator_MalformedExpressionStringSecondLeftOfOperator_ThrowsException()
         {
-            _func.Function = "'1sec.ond' !=";
+            Assert.Throws<ExpressionException>(() => _func.Function = "'1sec.ond' !=", "Operator error");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Operator error", MatchType = MessageMatch.Contains)]
         public void NotEqualStringOperator_MalformedExpressionStringFirstRightOfOperator_ThrowsException()
         {
-            _func.Function = "!= 'first'";
+            Assert.Throws<ExpressionException>(() => _func.Function = "!= 'first'", "Operator error");
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Operator error", MatchType = MessageMatch.Contains)]
         public void NotEqualStringOperator_MalformedExpressionStringSecondRightOfOperator_ThrowsException()
         {
-            _func.Function = "!= '1sec.ond'";
+            Assert.Throws<ExpressionException>(() => _func.Function = "!= '1sec.ond'", "Operator error");
         }
 
     }
