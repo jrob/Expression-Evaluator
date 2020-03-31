@@ -1,29 +1,25 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpressionEvaluator", "ExpressionEvaluator\ExpressionEvaluator.csproj", "{8CE7CD5B-C847-4CC3-B173-D85B74D356C9}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpressionEvaluatorTests", "ExpressionEvaluatorTests\ExpressionEvaluatorTests.csproj", "{F10EECC5-380C-4A7C-8345-EE49F44C7C3D}"
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpressionEvaluator", "ExpressionEvaluator\ExpressionEvaluator.csproj", "{749A182F-433F-4149-9ED2-EE9E5A2E7DA0}"
 EndProject
 Global
-	GlobalSection(TestCaseManagementSettings) = postSolution
-		CategoryFile = ExpressionEvaluator.vsmdi
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{8CE7CD5B-C847-4CC3-B173-D85B74D356C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8CE7CD5B-C847-4CC3-B173-D85B74D356C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8CE7CD5B-C847-4CC3-B173-D85B74D356C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8CE7CD5B-C847-4CC3-B173-D85B74D356C9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F10EECC5-380C-4A7C-8345-EE49F44C7C3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F10EECC5-380C-4A7C-8345-EE49F44C7C3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F10EECC5-380C-4A7C-8345-EE49F44C7C3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F10EECC5-380C-4A7C-8345-EE49F44C7C3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{749A182F-433F-4149-9ED2-EE9E5A2E7DA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{749A182F-433F-4149-9ED2-EE9E5A2E7DA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{749A182F-433F-4149-9ED2-EE9E5A2E7DA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{749A182F-433F-4149-9ED2-EE9E5A2E7DA0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0F5F700E-3EBA-4C02-86D1-FB29FB534FF9}
 	EndGlobalSection
 EndGlobal
