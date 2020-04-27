@@ -1,120 +1,12 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{8CE7CD5B-C847-4CC3-B173-D85B74D356C9}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ExpressionEvaluator</RootNamespace>
-    <AssemblyName>ExpressionEvaluator</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
+    <Folder Include="Properties\" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="InvalidTypeExpressionException.cs" />
-    <Compile Include="IExpression.cs" />
-    <Compile Include="Keywords\DelimiterToken.cs" />
-    <Compile Include="Keywords\Operand.cs" />
-    <Compile Include="Keywords\Conditional.cs" />
-    <Compile Include="Expression.cs" />
-    <Compile Include="ExpressionException.cs" />
-    <Compile Include="ExpressionKeywords.cs" />
-    <Compile Include="Keywords\Function.cs" />
-    <Compile Include="Keywords\Grouping.cs" />
-    <Compile Include="Expressions\InfixExpression.cs" />
-    <Compile Include="Keywords\Keyword.cs" />
-    <Compile Include="Keywords\Operator.cs" />
-    <Compile Include="Expressions\PostFixExpression.cs" />
-    <Compile Include="Keywords\GenericOperand.cs" />
-    <Compile Include="Keywords\Procedure.cs" />
-    <Compile Include="Keywords\StringGrouping.cs" />
-    <Compile Include="Keywords\Token.cs" />
-    <Compile Include="Keywords\Variable.cs" />
-    <Compile Include="Keywords\VariableDelimiter.cs" />
-    <Compile Include="Procedures\Functions\Absolute.cs" />
-    <Compile Include="Procedures\Functions\StdDev.cs" />
-    <Compile Include="Procedures\Functions\Ceiling.cs" />
-    <Compile Include="Procedures\Functions\Concatenate.cs" />
-    <Compile Include="Procedures\Functions\Contains.cs" />
-    <Compile Include="Procedures\Functions\DaysComponent.cs" />
-    <Compile Include="Procedures\Functions\Floor.cs" />
-    <Compile Include="Procedures\Functions\HoursComponent.cs" />
-    <Compile Include="Procedures\Functions\Avg.cs" />
-    <Compile Include="Procedures\Functions\Max.cs" />
-    <Compile Include="Procedures\Functions\Min.cs" />
-    <Compile Include="Procedures\Functions\MinutesComponent.cs" />
-    <Compile Include="Procedures\Functions\Round.cs" />
-    <Compile Include="Procedures\Functions\SecondsComponent.cs" />
-    <Compile Include="Procedures\Functions\Sum.cs" />
-    <Compile Include="Procedures\Functions\ToString.cs" />
-    <Compile Include="Procedures\Functions\IsNumber.cs" />
-    <Compile Include="Procedures\Functions\Length.cs" />
-    <Compile Include="Procedures\Functions\Substring.cs" />
-    <Compile Include="Procedures\Functions\Days.cs" />
-    <Compile Include="Procedures\Functions\Hours.cs" />
-    <Compile Include="Procedures\Functions\Minutes.cs" />
-    <Compile Include="Procedures\Functions\Now.cs" />
-    <Compile Include="Procedures\Functions\Seconds.cs" />
-    <Compile Include="Procedures\Functions\Sign.cs" />
-    <Compile Include="Procedures\Functions\ToNumber.cs" />
-    <Compile Include="Procedures\Functions\ToStringFormat.cs" />
-    <Compile Include="Procedures\Functions\TotalDays.cs" />
-    <Compile Include="Procedures\Functions\TotalHours.cs" />
-    <Compile Include="Procedures\Functions\TotalMinutes.cs" />
-    <Compile Include="Procedures\Functions\TotalSeconds.cs" />
-    <Compile Include="Procedures\Operators\Addition.cs" />
-    <Compile Include="Procedures\Operators\And.cs" />
-    <Compile Include="Procedures\Operators\Division.cs" />
-    <Compile Include="Procedures\Operators\Equal.cs" />
-    <Compile Include="Procedures\Operators\GreaterEqual.cs" />
-    <Compile Include="Procedures\Operators\GreaterThan.cs" />
-    <Compile Include="Procedures\Operators\LesserEqual.cs" />
-    <Compile Include="Procedures\Operators\LesserThan.cs" />
-    <Compile Include="Procedures\Operators\Modulo.cs" />
-    <Compile Include="Procedures\Operators\Multiplication.cs" />
-    <Compile Include="Procedures\Functions\NaturalLog.cs" />
-    <Compile Include="Procedures\Functions\Negate.cs" />
-    <Compile Include="Procedures\Operators\NotEqual.cs" />
-    <Compile Include="Procedures\Operators\Or.cs" />
-    <Compile Include="Procedures\Operators\Power.cs" />
-    <Compile Include="Procedures\Operators\Subtraction.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Keywords\GenericVariable.cs" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
 </Project>
