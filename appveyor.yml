@@ -7,8 +7,6 @@ before_build:
   - ps: dotnet --version
 build_script:
   - ps: dotnet build
-after_build:
-  - ps: nuget pack "$env:APPVEYOR_BUILD_FOLDER\ExpressionEvaluator\ExpressionEvaluator.csproj" -Properties "Configuration=Release;Platform=AnyCPU" -Version $env:APPVEYOR_BUILD_VERSION
 artifacts:
   - path: '**\*.nupkg'
 deploy:
