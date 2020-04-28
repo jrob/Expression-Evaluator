@@ -1,145 +1,19 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>
-    </ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{F10EECC5-380C-4A7C-8345-EE49F44C7C3D}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ExpressionEvaluatorTests</RootNamespace>
-    <AssemblyName>ExpressionEvaluatorTests</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+
+    <IsPackable>false</IsPackable>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="nunit.framework, Version=2.5.10.11092, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <HintPath>..\ThirdPartyLibs\NUnit-2.5.10.11092\nunit.framework.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
+    <PackageReference Include="nunit" Version="3.12.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.15.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.4.0" />
   </ItemGroup>
+
   <ItemGroup>
-    <CodeAnalysisDependentAssemblyPaths Condition=" '$(VS100COMNTOOLS)' != '' " Include="$(VS100COMNTOOLS)..\IDE\PrivateAssemblies">
-      <Visible>False</Visible>
-    </CodeAnalysisDependentAssemblyPaths>
+    <ProjectReference Include="..\ExpressionEvaluator\ExpressionEvaluator.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="AbsFunctionTests.generated.cs" />
-    <Compile Include="AdditionOperatorTests.generated.cs" />
-    <Compile Include="AndOperatorTests.generated.cs" />
-    <Compile Include="StdDevTests.cs" />
-    <Compile Include="BooleanOperatorTests.cs" />
-    <Compile Include="CaseTests.generated.cs" />
-    <Compile Include="CeilingTest.cs" />
-    <Compile Include="ConcatenateTests.cs" />
-    <Compile Include="ConditionalTests.cs" />
-    <Compile Include="ContainsTests.cs" />
-    <Compile Include="EdgeCaseNestedToNumber.cs" />
-    <Compile Include="EdgeCaseTests.cs" />
-    <Compile Include="FloorTest.cs" />
-    <Compile Include="MaxTests.cs" />
-    <Compile Include="ModuloTests.cs" />
-    <Compile Include="AvgTests.cs" />
-    <Compile Include="RoundTests.cs" />
-    <Compile Include="MinTests.cs" />
-    <Compile Include="SumTests.cs" />
-    <Compile Include="IsNumberFunctionTests.cs" />
-    <Compile Include="TimeComonentTests.cs" />
-    <Compile Include="ToStringFormatTests.cs" />
-    <Compile Include="ToStringFunctionTests.cs" />
-    <Compile Include="LengthTests.cs" />
-    <Compile Include="PrecedanceTests.cs" />
-    <Compile Include="SubstringFunctionTests.cs" />
-    <Compile Include="DateTimeTests.cs" />
-    <Compile Include="DaysFunctionTests.generated.cs" />
-    <Compile Include="DivisionOperatorTests.generated.cs" />
-    <Compile Include="EqualBooleanOperatorTests.generated.cs" />
-    <Compile Include="EqualNumericOperatorTests.generated.cs" />
-    <Compile Include="EqualStringOperatorTests.generated.cs" />
-    <Compile Include="ExpressionTests.cs" />
-    <Compile Include="GreaterEqualOperatorTests.generated.cs" />
-    <Compile Include="GreaterThanOperatorTests.generated.cs" />
-    <Compile Include="GroupingTests.cs" />
-    <Compile Include="HoursFunctionTests.generated.cs" />
-    <Compile Include="LesserEqualOperatorTests.generated.cs" />
-    <Compile Include="LesserThanOperatorTests.generated.cs" />
-    <Compile Include="LnFunctionTests.generated.cs" />
-    <Compile Include="MinutesFunctionTests.generated.cs" />
-    <Compile Include="MultiplicationOperatorTests.generated.cs" />
-    <Compile Include="NegFunctionTests.generated.cs" />
-    <Compile Include="NotEqualBooleanOperatorTests.generated.cs" />
-    <Compile Include="NotEqualNumericOperatorTests.generated.cs" />
-    <Compile Include="NotEqualStringOperatorTests.generated.cs" />
-    <Compile Include="NullVariableTests.cs" />
-    <Compile Include="OperatorTests.cs" />
-    <Compile Include="OrOperatorTests.generated.cs" />
-    <Compile Include="PowerOperatorTests.generated.cs" />
-    <Compile Include="PrecedenceTestsBase.generated.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ScientificNotationTests.cs" />
-    <Compile Include="SecondsFunctionTests.generated.cs" />
-    <Compile Include="SignFunctionTests.generated.cs" />
-    <Compile Include="StringTests.cs" />
-    <Compile Include="SubtractionOperatorTests.generated.cs" />
-    <Compile Include="ToNumberFunctionTests.cs" />
-    <Compile Include="VariableTests.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ExpressionEvaluator\ExpressionEvaluator.csproj">
-      <Project>{8CE7CD5B-C847-4CC3-B173-D85B74D356C9}</Project>
-      <Name>ExpressionEvaluator</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="CodeGen\CaseTestsTemplate.tt" />
-    <None Include="CodeGen\MultipleOutputHelper.ttinclude" />
-    <None Include="CodeGen\PrecedenceTestsTemplate.tt" />
-    <None Include="CodeGen\OperatorTestsTemplate.tt" />
-    <None Include="CodeGen\TestsGenerator.log">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TestsGenerator.tt</DependentUpon>
-    </None>
-    <None Include="CodeGen\TestsGenerator.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>TestsGenerator.log</LastGenOutput>
-    </None>
-    <None Include="CodeGen\FunctionTestsTemplate.tt" />
-    <None Include="CodeGen\TestsTemplate.tt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup />
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
 </Project>
