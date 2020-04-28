@@ -35,51 +35,51 @@ namespace ExpressionEvaluatorTests
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Operator error",
-            MatchType = MessageMatch.Contains)]
         public void MulitpleOperators_BadExpression001_ExpressionException()
         {
-            _func.Function = "1+(2*)";
+            var func = "1+(2*)";
+            ExpressionException ex = Assert.Throws<ExpressionException>(() => _func.Function = func);
+            StringAssert.Contains("Operator error", ex.Message);
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Operator error",
-            MatchType = MessageMatch.Contains)]
         public void MulitpleOperators_BadExpression002_ExpressionException()
         {
-            _func.Function = "1/2*";
+            var func = "1/2*";
+            ExpressionException ex = Assert.Throws<ExpressionException>(() => _func.Function = func);
+            StringAssert.Contains("Operator error", ex.Message);
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException),
-            ExpectedMessage = "Expression formatted incorrecty", MatchType = MessageMatch.Contains)]
         public void MulitpleOperators_BadExpression005_ExpressionException()
         {
-            _func.Function = "1-(2+3)2";
+            var func = "1-(2+3)2";
+            ExpressionException ex = Assert.Throws<ExpressionException>(() => _func.Function = func);
+            StringAssert.Contains("Expression formatted incorrecty", ex.Message);
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Operator error",
-            MatchType = MessageMatch.Contains)]
         public void MulitpleOperators_BadExpression007_ExpressionException()
         {
-            _func.Function = "1-2-3-3-2-";
+            var func = "1-2-3-3-2-";
+            ExpressionException ex = Assert.Throws<ExpressionException>(() => _func.Function = func);
+            StringAssert.Contains("Operator error", ex.Message);
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Operator error",
-            MatchType = MessageMatch.Contains)]
         public void MulitpleOperators_BadExrpession006_ExpressionException()
         {
-            _func.Function = "+1/";
+            var func = "+1/";
+            ExpressionException ex = Assert.Throws<ExpressionException>(() => _func.Function = func);
+            StringAssert.Contains("Operator error", ex.Message);
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Function error",
-            MatchType = MessageMatch.Contains)]
         public void Negation_BadExpression001_ExpressionException()
         {
-            _func.Function = "9832 neg";
+            var func = "9832 neg";
+            ExpressionException ex = Assert.Throws<ExpressionException>(() => _func.Function = func);
+            StringAssert.Contains("Function error", ex.Message);
         }
 
         [Test]

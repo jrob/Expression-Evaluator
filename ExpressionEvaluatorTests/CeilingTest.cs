@@ -98,13 +98,12 @@ namespace ExpressionEvaluatorTests
         }
 
         [Test]
-        [ExpectedException(
-            typeof(ExpressionException), ExpectedMessage = "Ceiling",
-            MatchType = MessageMatch.Contains)]
         public void Ceiling_TooManyParameters_CorrectValue()
         {
             func.Function = @"ceiling(1.123, 2, 3)";
-            Assert.AreEqual(1.12m, func.EvaluateNumeric());
+            ExpressionException ex = Assert.Throws<ExpressionException>(() => func.EvaluateNumeric());
+            StringAssert.Contains("Ceiling", ex.Message);
+
         }
 
         [Test]

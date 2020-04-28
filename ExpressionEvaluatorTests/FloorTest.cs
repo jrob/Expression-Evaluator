@@ -98,13 +98,12 @@ namespace ExpressionEvaluatorTests
         }
 
         [Test]
-        [ExpectedException(
-            typeof(ExpressionException), ExpectedMessage = "Floor",
-            MatchType = MessageMatch.Contains)]
         public void Floor_TooManyParameters_CorrectValue()
         {
             func.Function = @"floor(1.123, 2, 3)";
-            Assert.AreEqual(1.12m, func.EvaluateNumeric());
+            ExpressionException ex = Assert.Throws<ExpressionException>(() => func.EvaluateNumeric());
+            StringAssert.Contains("Floor", ex.Message);
+
         }
 
         [Test]
