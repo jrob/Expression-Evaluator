@@ -55,7 +55,7 @@ namespace ExpressionEvaluatorTests
         {
             var func = "1-(2+3)2";
             ExpressionException ex = Assert.Throws<ExpressionException>(() => _func.Function = func);
-            StringAssert.Contains("Expression formatted incorrecty", ex.Message);
+            StringAssert.Contains("Expression formatted incorrectly", ex.Message);
         }
 
         [Test]
