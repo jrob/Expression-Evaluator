@@ -10,8 +10,8 @@ assembly_info:
   assembly_informational_version: '{version}-$(GIT_SHORT_HASH)'
 before_build:
   - cmd: dotnet --version
-build:
-  verbosity: minimal
+build_script:
+  - cmd: dotnet build
 after_build:
 - ps: nuget pack "$env:APPVEYOR_BUILD_FOLDER\ExpressionEvaluator\ExpressionEvaluator.csproj" -Properties "Configuration=Release;Platform=AnyCPU" -Version $env:APPVEYOR_BUILD_VERSION
 artifacts:
