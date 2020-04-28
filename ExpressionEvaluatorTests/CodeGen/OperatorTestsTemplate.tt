@@ -118,10 +118,11 @@ public class OperatorTestsTemplate<T> : TestsTemplate
         {
 #>
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Operator error", MatchType = MessageMatch.Contains)]
         public void <#= OperatorName #>Operator_MalformedExpression<#= vd1.Description #>RightOfOperator_ThrowsException()
         {
-            _func.Function = "<#= Operator #> <#= vd1.Value #>";
+            var func = "<#= Operator #> <#= vd1.Value #>";
+            ExpressionException ex = Assert.Throws<ExpressionException>(() => _func.Function = func);
+            StringAssert.Contains("Operator error", ex.Message);
         }
 
 <#+
@@ -134,10 +135,11 @@ public class OperatorTestsTemplate<T> : TestsTemplate
         {
 #>
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Operator error", MatchType = MessageMatch.Contains)]
         public void <#= OperatorName #>Operator_MalformedExpression<#= vd1.Description #>LeftOfOperator_ThrowsException()
         {
-            _func.Function = "<#= vd1.Value #> <#= Operator #>";
+            var func = "<#= vd1.Value #> <#= Operator #>";
+            ExpressionException ex = Assert.Throws<ExpressionException>(() => _func.Function = func);
+            StringAssert.Contains("Operator error", ex.Message);
         }
 
 <#+
