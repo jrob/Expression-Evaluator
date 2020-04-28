@@ -3,9 +3,9 @@ configuration: Release
 init:
 - ps: $env:GIT_SHORT_HASH = $env:APPVEYOR_REPO_COMMIT.substring(0,7)
 before_build:
-  - cmd: dotnet --version
+  - ps: dotnet --version
 build_script:
-  - cmd: dotnet build
+  - ps: dotnet build
 after_build:
 - ps: nuget pack "$env:APPVEYOR_BUILD_FOLDER\ExpressionEvaluator\ExpressionEvaluator.csproj" -Properties "Configuration=Release;Platform=AnyCPU" -Version $env:APPVEYOR_BUILD_VERSION
 artifacts:
