@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using NUnit.Framework;
 using Vanderbilt.Biostatistics.Wfccm2;
 
@@ -46,87 +46,99 @@ namespace ExpressionEvaluatorTests
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Close missing", MatchType = MessageMatch.Contains)]
         public void LnOperator_MalformedExpressionMissingRightParenPositiveWholeArgument_ThrowsException()
         {
-            _func.Function = "ln(2";
+            var func = "ln(2";
+            ExpressionException ex = Assert.Throws<ExpressionException>(() => _func.Function = func);
+            StringAssert.Contains("Close missing", ex.Message);
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Close missing", MatchType = MessageMatch.Contains)]
         public void LnOperator_MalformedExpressionMissingRightParenPositiveFractionArgument_ThrowsException()
         {
-            _func.Function = "ln(0.5";
+            var func = "ln(0.5";
+            ExpressionException ex = Assert.Throws<ExpressionException>(() => _func.Function = func);
+            StringAssert.Contains("Close missing", ex.Message);
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Close missing", MatchType = MessageMatch.Contains)]
         public void LnOperator_MalformedExpressionMissingRightParenNegativeWholeArgument_ThrowsException()
         {
-            _func.Function = "ln(-2";
+            var func = "ln(-2";
+            ExpressionException ex = Assert.Throws<ExpressionException>(() => _func.Function = func);
+            StringAssert.Contains("Close missing", ex.Message);
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Close missing", MatchType = MessageMatch.Contains)]
         public void LnOperator_MalformedExpressionMissingRightParenNegativeFractionArgument_ThrowsException()
         {
-            _func.Function = "ln(-0.5";
+            var func = "ln(-0.5";
+            ExpressionException ex = Assert.Throws<ExpressionException>(() => _func.Function = func);
+            StringAssert.Contains("Close missing", ex.Message);
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Open missing", MatchType = MessageMatch.Contains)]
         public void LnOperator_MalformedExpressionMissingLeftParenPositiveWholeArgument_ThrowsException()
         {
-            _func.Function = "ln 2)";
+            var func = "ln 2)";
+            ExpressionException ex = Assert.Throws<ExpressionException>(() => _func.Function = func);
+            StringAssert.Contains("Open missing", ex.Message);
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Open missing", MatchType = MessageMatch.Contains)]
         public void LnOperator_MalformedExpressionMissingLeftParenPositiveFractionArgument_ThrowsException()
         {
-            _func.Function = "ln 0.5)";
+            var func = "ln 0.5)";
+            ExpressionException ex = Assert.Throws<ExpressionException>(() => _func.Function = func);
+            StringAssert.Contains("Open missing", ex.Message);
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Open missing", MatchType = MessageMatch.Contains)]
         public void LnOperator_MalformedExpressionMissingLeftParenNegativeWholeArgument_ThrowsException()
         {
-            _func.Function = "ln -2)";
+            var func = "ln -2)";
+            ExpressionException ex = Assert.Throws<ExpressionException>(() => _func.Function = func);
+            StringAssert.Contains("Open missing", ex.Message);
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Open missing", MatchType = MessageMatch.Contains)]
         public void LnOperator_MalformedExpressionMissingLeftParenNegativeFractionArgument_ThrowsException()
         {
-            _func.Function = "ln -0.5)";
+            var func = "ln -0.5)";
+            ExpressionException ex = Assert.Throws<ExpressionException>(() => _func.Function = func);
+            StringAssert.Contains("Open missing", ex.Message);
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Open and close parenthesis required", MatchType = MessageMatch.Contains)]
         public void LnOperator_MalformedExpressionMissingBothParenthesisPositiveWholeArgument_ThrowsException()
         {
-            _func.Function = "ln 2";
+            var func = "ln 2";
+            ExpressionException ex = Assert.Throws<ExpressionException>(() => _func.Function = func);
+            StringAssert.Contains("Open and close parenthesis required", ex.Message);
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Open and close parenthesis required", MatchType = MessageMatch.Contains)]
         public void LnOperator_MalformedExpressionMissingBothParenthesisPositiveFractionArgument_ThrowsException()
         {
-            _func.Function = "ln 0.5";
+            var func = "ln 0.5";
+            ExpressionException ex = Assert.Throws<ExpressionException>(() => _func.Function = func);
+            StringAssert.Contains("Open and close parenthesis required", ex.Message);
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Open and close parenthesis required", MatchType = MessageMatch.Contains)]
         public void LnOperator_MalformedExpressionMissingBothParenthesisNegativeWholeArgument_ThrowsException()
         {
-            _func.Function = "ln -2";
+            var func = "ln -2";
+            ExpressionException ex = Assert.Throws<ExpressionException>(() => _func.Function = func);
+            StringAssert.Contains("Open and close parenthesis required", ex.Message);
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Open and close parenthesis required", MatchType = MessageMatch.Contains)]
         public void LnOperator_MalformedExpressionMissingBothParenthesisNegativeFractionArgument_ThrowsException()
         {
-            _func.Function = "ln -0.5";
+            var func = "ln -0.5";
+            ExpressionException ex = Assert.Throws<ExpressionException>(() => _func.Function = func);
+            StringAssert.Contains("Open and close parenthesis required", ex.Message);
         }
 
     }
