@@ -156,6 +156,7 @@ namespace Vanderbilt.Biostatistics.Wfccm2
             // Clean the function.
             //function = Regex.Replace(function, @"[ ]+", @""); // Remove spaces
 
+            function = Regex.Replace(function, Environment.NewLine, " ");
             function = Regex.Replace(function, "\r\n", " ");
             function = Regex.Replace(function, ",", " , ");
 
