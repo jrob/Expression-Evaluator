@@ -196,10 +196,10 @@ namespace Vanderbilt.Biostatistics.Wfccm2
                 }
                 return ((GenericOperand<double>)result).Value;
             }
-            catch (NotFiniteNumberException nf) {
+            catch (NotFiniteNumberException) {
                 return double.NaN;
             }
-            catch (DivideByZeroException nf) {
+            catch (DivideByZeroException) {
                 return double.NaN;
             }
         }
@@ -502,10 +502,10 @@ namespace Vanderbilt.Biostatistics.Wfccm2
                                 }
                             }
                         }
-                        catch (NotFiniteNumberException nf) {
+                        catch (NotFiniteNumberException) {
                             result = new GenericOperand<double>(double.NaN);
                         }
-                        catch (DivideByZeroException nf) {
+                        catch (DivideByZeroException) {
                             result = new GenericOperand<double>(double.NaN);
                         }
                         catch (Exception exp) {

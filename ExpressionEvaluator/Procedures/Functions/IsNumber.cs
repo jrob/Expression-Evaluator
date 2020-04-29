@@ -15,7 +15,7 @@ namespace ExpressionEvaluator.Procedures.Functions
                     double.Parse(x);
                     return true;
                 }
-                catch (Exception e) {
+                catch (Exception) {
                     return false;
                 }
             };
