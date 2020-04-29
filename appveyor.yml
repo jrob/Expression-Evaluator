@@ -1,5 +1,5 @@
 version: 2.0.0.{build}
-image: Ubuntu
+image: Visual Studio 2019
 configuration: Release
 init:
   - ps: $env:GIT_SHORT_HASH = $env:APPVEYOR_REPO_COMMIT.substring(0,7)
