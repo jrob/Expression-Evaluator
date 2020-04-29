@@ -6,6 +6,8 @@
     <PackageId>Expression-Evaluator</PackageId>
     <Authors>Jeremy Roberts</Authors>
     <PackageProjectUrl>https://github.com/jrob/Expression-Evaluator</PackageProjectUrl>
+    <EmbedAllSources>true</EmbedAllSources>
+    <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
   </PropertyGroup>
 
   <ItemGroup>
