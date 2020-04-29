@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using NUnit.Framework;
 using Vanderbilt.Biostatistics.Wfccm2;
 
@@ -46,87 +46,99 @@ namespace ExpressionEvaluatorTests
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Close missing", MatchType = MessageMatch.Contains)]
         public void HoursOperator_MalformedExpressionMissingRightParenPositiveWholeArgument_ThrowsException()
         {
-            _func.Function = "hours(2";
+            var func = "hours(2";
+            ExpressionException ex = Assert.Throws<ExpressionException>(() => _func.Function = func);
+            StringAssert.Contains("Close missing", ex.Message);
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Close missing", MatchType = MessageMatch.Contains)]
         public void HoursOperator_MalformedExpressionMissingRightParenPositiveFractionArgument_ThrowsException()
         {
-            _func.Function = "hours(0.5";
+            var func = "hours(0.5";
+            ExpressionException ex = Assert.Throws<ExpressionException>(() => _func.Function = func);
+            StringAssert.Contains("Close missing", ex.Message);
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Close missing", MatchType = MessageMatch.Contains)]
         public void HoursOperator_MalformedExpressionMissingRightParenNegativeWholeArgument_ThrowsException()
         {
-            _func.Function = "hours(-2";
+            var func = "hours(-2";
+            ExpressionException ex = Assert.Throws<ExpressionException>(() => _func.Function = func);
+            StringAssert.Contains("Close missing", ex.Message);
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Close missing", MatchType = MessageMatch.Contains)]
         public void HoursOperator_MalformedExpressionMissingRightParenNegativeFractionArgument_ThrowsException()
         {
-            _func.Function = "hours(-0.5";
+            var func = "hours(-0.5";
+            ExpressionException ex = Assert.Throws<ExpressionException>(() => _func.Function = func);
+            StringAssert.Contains("Close missing", ex.Message);
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Open missing", MatchType = MessageMatch.Contains)]
         public void HoursOperator_MalformedExpressionMissingLeftParenPositiveWholeArgument_ThrowsException()
         {
-            _func.Function = "hours 2)";
+            var func = "hours 2)";
+            ExpressionException ex = Assert.Throws<ExpressionException>(() => _func.Function = func);
+            StringAssert.Contains("Open missing", ex.Message);
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Open missing", MatchType = MessageMatch.Contains)]
         public void HoursOperator_MalformedExpressionMissingLeftParenPositiveFractionArgument_ThrowsException()
         {
-            _func.Function = "hours 0.5)";
+            var func = "hours 0.5)";
+            ExpressionException ex = Assert.Throws<ExpressionException>(() => _func.Function = func);
+            StringAssert.Contains("Open missing", ex.Message);
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Open missing", MatchType = MessageMatch.Contains)]
         public void HoursOperator_MalformedExpressionMissingLeftParenNegativeWholeArgument_ThrowsException()
         {
-            _func.Function = "hours -2)";
+            var func = "hours -2)";
+            ExpressionException ex = Assert.Throws<ExpressionException>(() => _func.Function = func);
+            StringAssert.Contains("Open missing", ex.Message);
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Open missing", MatchType = MessageMatch.Contains)]
         public void HoursOperator_MalformedExpressionMissingLeftParenNegativeFractionArgument_ThrowsException()
         {
-            _func.Function = "hours -0.5)";
+            var func = "hours -0.5)";
+            ExpressionException ex = Assert.Throws<ExpressionException>(() => _func.Function = func);
+            StringAssert.Contains("Open missing", ex.Message);
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Open and close parenthesis required", MatchType = MessageMatch.Contains)]
         public void HoursOperator_MalformedExpressionMissingBothParenthesisPositiveWholeArgument_ThrowsException()
         {
-            _func.Function = "hours 2";
+            var func = "hours 2";
+            ExpressionException ex = Assert.Throws<ExpressionException>(() => _func.Function = func);
+            StringAssert.Contains("Open and close parenthesis required", ex.Message);
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Open and close parenthesis required", MatchType = MessageMatch.Contains)]
         public void HoursOperator_MalformedExpressionMissingBothParenthesisPositiveFractionArgument_ThrowsException()
         {
-            _func.Function = "hours 0.5";
+            var func = "hours 0.5";
+            ExpressionException ex = Assert.Throws<ExpressionException>(() => _func.Function = func);
+            StringAssert.Contains("Open and close parenthesis required", ex.Message);
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Open and close parenthesis required", MatchType = MessageMatch.Contains)]
         public void HoursOperator_MalformedExpressionMissingBothParenthesisNegativeWholeArgument_ThrowsException()
         {
-            _func.Function = "hours -2";
+            var func = "hours -2";
+            ExpressionException ex = Assert.Throws<ExpressionException>(() => _func.Function = func);
+            StringAssert.Contains("Open and close parenthesis required", ex.Message);
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Open and close parenthesis required", MatchType = MessageMatch.Contains)]
         public void HoursOperator_MalformedExpressionMissingBothParenthesisNegativeFractionArgument_ThrowsException()
         {
-            _func.Function = "hours -0.5";
+            var func = "hours -0.5";
+            ExpressionException ex = Assert.Throws<ExpressionException>(() => _func.Function = func);
+            StringAssert.Contains("Open and close parenthesis required", ex.Message);
         }
 
     }

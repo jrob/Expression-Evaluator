@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using NUnit.Framework;
 using Vanderbilt.Biostatistics.Wfccm2;
 
@@ -146,31 +146,35 @@ namespace ExpressionEvaluatorTests
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Operator error", MatchType = MessageMatch.Contains)]
         public void EqualBooleanOperator_MalformedExpressionBooleanTrueLeftOfOperator_ThrowsException()
         {
-            _func.Function = "True ==";
+            var func = "True ==";
+            ExpressionException ex = Assert.Throws<ExpressionException>(() => _func.Function = func);
+            StringAssert.Contains("Operator error", ex.Message);
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Operator error", MatchType = MessageMatch.Contains)]
         public void EqualBooleanOperator_MalformedExpressionBooleanFalseLeftOfOperator_ThrowsException()
         {
-            _func.Function = "False ==";
+            var func = "False ==";
+            ExpressionException ex = Assert.Throws<ExpressionException>(() => _func.Function = func);
+            StringAssert.Contains("Operator error", ex.Message);
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Operator error", MatchType = MessageMatch.Contains)]
         public void EqualBooleanOperator_MalformedExpressionBooleanTrueRightOfOperator_ThrowsException()
         {
-            _func.Function = "== True";
+            var func = "== True";
+            ExpressionException ex = Assert.Throws<ExpressionException>(() => _func.Function = func);
+            StringAssert.Contains("Operator error", ex.Message);
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Operator error", MatchType = MessageMatch.Contains)]
         public void EqualBooleanOperator_MalformedExpressionBooleanFalseRightOfOperator_ThrowsException()
         {
-            _func.Function = "== False";
+            var func = "== False";
+            ExpressionException ex = Assert.Throws<ExpressionException>(() => _func.Function = func);
+            StringAssert.Contains("Operator error", ex.Message);
         }
 
     }

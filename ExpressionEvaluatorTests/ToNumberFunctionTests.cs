@@ -49,14 +49,12 @@ namespace ExpressionEvaluatorTests
         }
 
         [Test]
-        [NUnit.Framework.ExpectedException(typeof(ExpressionException),
-            ExpectedMessage = "ToNumber operator used incorrectly",
-            MatchType = MessageMatch.Contains)]
         public void ToNumberOperator_PositiveFractionNotStringWithLeftVariable_IsNotCorrect()
         {
             _func.Function = "toNumber(a)";
             _func.AddSetVariable("a", 2.1);
-            NUnit.Framework.Assert.AreEqual(2.1d, _func.EvaluateNumeric());
+            ExpressionException ex = Assert.Throws<ExpressionException>(() => _func.EvaluateNumeric());
+            StringAssert.Contains("ToNumber operator used incorrectly", ex.Message);
         }
 
         [Test]
@@ -76,13 +74,11 @@ namespace ExpressionEvaluatorTests
         }
 
         [Test]
-        [NUnit.Framework.ExpectedException(typeof(ExpressionException),
-            ExpectedMessage = "ToNumber operator used incorrectly",
-            MatchType = MessageMatch.Contains)]
         public void ToNumberOperator_VariableMixedWithDigitWithoutSetVariable_OperatorError()
         {
             _func.Function = "toNumber(3a)";
-            _func.EvaluateNumeric();
+            ExpressionException ex = Assert.Throws<ExpressionException>(() => _func.EvaluateNumeric());
+            StringAssert.Contains("ToNumber operator used incorrectly", ex.Message);
         }
 
         [Test]
@@ -94,13 +90,11 @@ namespace ExpressionEvaluatorTests
         }
 
         [Test]
-        [NUnit.Framework.ExpectedException(typeof(ExpressionException),
-            ExpectedMessage = "ToNumber operator used incorrectly",
-            MatchType = MessageMatch.Contains)]
         public void ToNumberOperator_VariableWithoutSetVariable_OperatorError()
         {
             _func.Function = "toNumber(a)";
-            _func.EvaluateNumeric();
+            ExpressionException ex = Assert.Throws<ExpressionException>(() => _func.EvaluateNumeric());
+            StringAssert.Contains("ToNumber operator used incorrectly", ex.Message);
         }
 
         [Test]

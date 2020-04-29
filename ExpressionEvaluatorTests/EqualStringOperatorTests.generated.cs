@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using NUnit.Framework;
 using Vanderbilt.Biostatistics.Wfccm2;
 
@@ -146,31 +146,35 @@ namespace ExpressionEvaluatorTests
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Operator error", MatchType = MessageMatch.Contains)]
         public void EqualStringOperator_MalformedExpressionStringFirstLeftOfOperator_ThrowsException()
         {
-            _func.Function = "'first' ==";
+            var func = "'first' ==";
+            ExpressionException ex = Assert.Throws<ExpressionException>(() => _func.Function = func);
+            StringAssert.Contains("Operator error", ex.Message);
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Operator error", MatchType = MessageMatch.Contains)]
         public void EqualStringOperator_MalformedExpressionStringSecondLeftOfOperator_ThrowsException()
         {
-            _func.Function = "'1sec.ond' ==";
+            var func = "'1sec.ond' ==";
+            ExpressionException ex = Assert.Throws<ExpressionException>(() => _func.Function = func);
+            StringAssert.Contains("Operator error", ex.Message);
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Operator error", MatchType = MessageMatch.Contains)]
         public void EqualStringOperator_MalformedExpressionStringFirstRightOfOperator_ThrowsException()
         {
-            _func.Function = "== 'first'";
+            var func = "== 'first'";
+            ExpressionException ex = Assert.Throws<ExpressionException>(() => _func.Function = func);
+            StringAssert.Contains("Operator error", ex.Message);
         }
 
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Operator error", MatchType = MessageMatch.Contains)]
         public void EqualStringOperator_MalformedExpressionStringSecondRightOfOperator_ThrowsException()
         {
-            _func.Function = "== '1sec.ond'";
+            var func = "== '1sec.ond'";
+            ExpressionException ex = Assert.Throws<ExpressionException>(() => _func.Function = func);
+            StringAssert.Contains("Operator error", ex.Message);
         }
 
     }

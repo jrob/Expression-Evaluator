@@ -46,10 +46,11 @@ public class FunctionTestsTemplate : TestsTemplate
         {
 #>
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Close missing", MatchType = MessageMatch.Contains)]
         public void <#= OperatorName #>Operator_MalformedExpressionMissingRightParen<#= vd1.Description #>Argument_ThrowsException()
         {
-            _func.Function = "<#= Operator #>(<#= vd1.Value #>";
+            var func = "<#= Operator #>(<#= vd1.Value #>";
+            ExpressionException ex = Assert.Throws<ExpressionException>(() => _func.Function = func);
+            StringAssert.Contains("Close missing", ex.Message);
         }
 
 <#+
@@ -62,10 +63,11 @@ public class FunctionTestsTemplate : TestsTemplate
         {
 #>
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Open missing", MatchType = MessageMatch.Contains)]
         public void <#= OperatorName #>Operator_MalformedExpressionMissingLeftParen<#= vd1.Description #>Argument_ThrowsException()
         {
-            _func.Function = "<#= Operator #> <#= vd1.Value #>)";
+            var func = "<#= Operator #> <#= vd1.Value #>)";
+            ExpressionException ex = Assert.Throws<ExpressionException>(() => _func.Function = func);
+            StringAssert.Contains("Open missing", ex.Message);
         }
 
 <#+
@@ -78,10 +80,11 @@ public class FunctionTestsTemplate : TestsTemplate
         {
 #>
         [Test]
-        [ExpectedException(typeof(ExpressionException), ExpectedMessage = "Open and close parenthesis required", MatchType = MessageMatch.Contains)]
         public void <#= OperatorName #>Operator_MalformedExpressionMissingBothParenthesis<#= vd1.Description #>Argument_ThrowsException()
         {
-            _func.Function = "<#= Operator #> <#= vd1.Value #>";
+            var func = "<#= Operator #> <#= vd1.Value #>";
+            ExpressionException ex = Assert.Throws<ExpressionException>(() => _func.Function = func);
+            StringAssert.Contains("Open and close parenthesis required", ex.Message);
         }
 
 <#+

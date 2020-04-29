@@ -35,7 +35,7 @@ namespace Vanderbilt.Biostatistics.Wfccm2
 
         private void CheckConditionalFormatting(string inFix)
         {
-            string errorMsg = "Conditional Error! Boolean statement formatted incorrectly. " + inFix;
+            string errorMsg = "Conditional error! Boolean statement formatted incorrectly. " + inFix;
 
             // Find any instances of an "if" followed by something othern then a "(".
             if (Regex.IsMatch(inFix, @" if(?! *\()")) {
@@ -57,7 +57,7 @@ namespace Vanderbilt.Biostatistics.Wfccm2
         private void CheckForMatchingIfElse(string inFix, string[] tokens)
         {
             string errorMsg =
-                "Conditional Error! If/Else mismatch. Should be in the following form: if (...) {...} else if (...) {...} else {...}. "
+                "Conditional error! If/Else mismatch. Should be in the following form: if (...) {...} else if (...) {...} else {...}. "
                     + inFix;
 
             var workStack = new Stack<string>();
