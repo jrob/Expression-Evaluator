@@ -3,6 +3,9 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>Expression-Evaluator</PackageId>
+    <Authors>Jeremy Roberts</Authors>
+    <PackageProjectUrl>https://github.com/jrob/Expression-Evaluator</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>
